@@ -10,12 +10,15 @@
 		353C008A261BF7008CEE7EFA /* Pods_Camming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA2EB78F990FF5A9ACAF76B /* Pods_Camming.framework */; };
 		B1051CE028B1059A006205BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CDF28B1059A006205BB /* AppDelegate.swift */; };
 		B1051CE228B1059A006205BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CE128B1059A006205BB /* SceneDelegate.swift */; };
-		B1051CE428B1059A006205BB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CE328B1059A006205BB /* HomeViewController.swift */; };
+		B1051CE428B1059A006205BB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CE328B1059A006205BB /* TabBarController.swift */; };
 		B1051CE928B1059C006205BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1051CE828B1059C006205BB /* Assets.xcassets */; };
 		B1051CEC28B1059C006205BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1051CEA28B1059C006205BB /* LaunchScreen.storyboard */; };
 		B1051CF728B1059C006205BB /* CammingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CF628B1059C006205BB /* CammingTests.swift */; };
 		B1051D0128B1059C006205BB /* CammingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D0028B1059C006205BB /* CammingUITests.swift */; };
 		B1051D0328B1059C006205BB /* CammingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D0228B1059C006205BB /* CammingUITestsLaunchTests.swift */; };
+		B1051D1228B108C2006205BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B1051D1128B108C2006205BB /* SnapKit */; };
+		B1051D1528B10941006205BB /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1428B10941006205BB /* TabBarItem.swift */; };
+		B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1628B10C14006205BB /* ChecklistViewController.swift */; };
 		DC81F074432CF4D77C54211A /* Pods_Camming_CammingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B63BF5FE8A3BEF805275CAB /* Pods_Camming_CammingUITests.framework */; };
 		E0C1AC7437C64BFF69B80F4C /* Pods_CammingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42914B89957DF77F489CA4FD /* Pods_CammingTests.framework */; };
 /* End PBXBuildFile section */
@@ -48,7 +51,7 @@
 		B1051CDC28B1059A006205BB /* Camming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1051CDF28B1059A006205BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1051CE128B1059A006205BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B1051CE328B1059A006205BB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B1051CE328B1059A006205BB /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B1051CE828B1059C006205BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1051CEB28B1059C006205BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1051CED28B1059C006205BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +60,8 @@
 		B1051CFC28B1059C006205BB /* CammingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CammingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1051D0028B1059C006205BB /* CammingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CammingUITests.swift; sourceTree = "<group>"; };
 		B1051D0228B1059C006205BB /* CammingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CammingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B1051D1428B10941006205BB /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		B1051D1628B10C14006205BB /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		B8184FF2E1AD9669A8222E6D /* Pods-Camming-CammingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camming-CammingUITests.debug.xcconfig"; path = "Target Support Files/Pods-Camming-CammingUITests/Pods-Camming-CammingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF53F2751ED43E6F99407F77 /* Pods-CammingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CammingTests.release.xcconfig"; path = "Target Support Files/Pods-CammingTests/Pods-CammingTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				353C008A261BF7008CEE7EFA /* Pods_Camming.framework in Frameworks */,
+				B1051D1228B108C2006205BB /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +135,7 @@
 			children = (
 				B1051CDF28B1059A006205BB /* AppDelegate.swift */,
 				B1051CE128B1059A006205BB /* SceneDelegate.swift */,
-				B1051CE328B1059A006205BB /* HomeViewController.swift */,
+				B1051D1328B10928006205BB /* Scenes */,
 				B1051CE828B1059C006205BB /* Assets.xcassets */,
 				B1051CEA28B1059C006205BB /* LaunchScreen.storyboard */,
 				B1051CED28B1059C006205BB /* Info.plist */,
@@ -152,6 +158,24 @@
 				B1051D0228B1059C006205BB /* CammingUITestsLaunchTests.swift */,
 			);
 			path = CammingUITests;
+			sourceTree = "<group>";
+		};
+		B1051D1328B10928006205BB /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B1051D1828B10DC7006205BB /* TabBar */,
+				B1051D1628B10C14006205BB /* ChecklistViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		B1051D1828B10DC7006205BB /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				B1051CE328B1059A006205BB /* TabBarController.swift */,
+				B1051D1428B10941006205BB /* TabBarItem.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		F966C41514DDC4F7C0F251D8 /* Frameworks */ = {
@@ -182,6 +206,9 @@
 			dependencies = (
 			);
 			name = Camming;
+			packageProductDependencies = (
+				B1051D1128B108C2006205BB /* SnapKit */,
+			);
 			productName = Camming;
 			productReference = B1051CDC28B1059A006205BB /* Camming.app */;
 			productType = "com.apple.product-type.application";
@@ -256,6 +283,9 @@
 				Base,
 			);
 			mainGroup = B1051CD328B1059A006205BB;
+			packageReferences = (
+				B1051D1028B108C2006205BB /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = B1051CDD28B1059A006205BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -385,8 +415,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1051CE428B1059A006205BB /* HomeViewController.swift in Sources */,
+				B1051CE428B1059A006205BB /* TabBarController.swift in Sources */,
 				B1051CE028B1059A006205BB /* AppDelegate.swift in Sources */,
+				B1051D1528B10941006205BB /* TabBarItem.swift in Sources */,
+				B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */,
 				B1051CE228B1059A006205BB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -725,6 +757,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B1051D1028B108C2006205BB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B1051D1128B108C2006205BB /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B1051D1028B108C2006205BB /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B1051CD428B1059A006205BB /* Project object */;
 }
