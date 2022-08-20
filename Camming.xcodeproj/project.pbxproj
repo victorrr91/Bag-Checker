@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		353C008A261BF7008CEE7EFA /* Pods_Camming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA2EB78F990FF5A9ACAF76B /* Pods_Camming.framework */; };
 		B1051CE028B1059A006205BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CDF28B1059A006205BB /* AppDelegate.swift */; };
 		B1051CE228B1059A006205BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CE128B1059A006205BB /* SceneDelegate.swift */; };
-		B1051CE428B1059A006205BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CE328B1059A006205BB /* ViewController.swift */; };
-		B1051CE728B1059A006205BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1051CE528B1059A006205BB /* Main.storyboard */; };
+		B1051CE428B1059A006205BB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CE328B1059A006205BB /* HomeViewController.swift */; };
 		B1051CE928B1059C006205BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1051CE828B1059C006205BB /* Assets.xcassets */; };
 		B1051CEC28B1059C006205BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1051CEA28B1059C006205BB /* LaunchScreen.storyboard */; };
 		B1051CF728B1059C006205BB /* CammingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051CF628B1059C006205BB /* CammingTests.swift */; };
 		B1051D0128B1059C006205BB /* CammingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D0028B1059C006205BB /* CammingUITests.swift */; };
 		B1051D0328B1059C006205BB /* CammingUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D0228B1059C006205BB /* CammingUITestsLaunchTests.swift */; };
+		DC81F074432CF4D77C54211A /* Pods_Camming_CammingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B63BF5FE8A3BEF805275CAB /* Pods_Camming_CammingUITests.framework */; };
+		E0C1AC7437C64BFF69B80F4C /* Pods_CammingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42914B89957DF77F489CA4FD /* Pods_CammingTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +38,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13D181976E7CC36EABA05825 /* Pods-Camming-CammingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camming-CammingUITests.release.xcconfig"; path = "Target Support Files/Pods-Camming-CammingUITests/Pods-Camming-CammingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		42914B89957DF77F489CA4FD /* Pods_CammingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CammingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B63BF5FE8A3BEF805275CAB /* Pods_Camming_CammingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Camming_CammingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E53C46072556E7B1DCF587E /* Pods-Camming.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camming.release.xcconfig"; path = "Target Support Files/Pods-Camming/Pods-Camming.release.xcconfig"; sourceTree = "<group>"; };
+		69325DB908A05E0E88818B1E /* Pods-Camming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camming.debug.xcconfig"; path = "Target Support Files/Pods-Camming/Pods-Camming.debug.xcconfig"; sourceTree = "<group>"; };
+		6FA2EB78F990FF5A9ACAF76B /* Pods_Camming.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Camming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C6E3BCBA3250E2F19D66E25 /* Pods-CammingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CammingTests.debug.xcconfig"; path = "Target Support Files/Pods-CammingTests/Pods-CammingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1051CDC28B1059A006205BB /* Camming.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camming.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1051CDF28B1059A006205BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1051CE128B1059A006205BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B1051CE328B1059A006205BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B1051CE628B1059A006205BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B1051CE328B1059A006205BB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B1051CE828B1059C006205BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B1051CEB28B1059C006205BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1051CED28B1059C006205BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +57,8 @@
 		B1051CFC28B1059C006205BB /* CammingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CammingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1051D0028B1059C006205BB /* CammingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CammingUITests.swift; sourceTree = "<group>"; };
 		B1051D0228B1059C006205BB /* CammingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CammingUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B8184FF2E1AD9669A8222E6D /* Pods-Camming-CammingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camming-CammingUITests.debug.xcconfig"; path = "Target Support Files/Pods-Camming-CammingUITests/Pods-Camming-CammingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EF53F2751ED43E6F99407F77 /* Pods-CammingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CammingTests.release.xcconfig"; path = "Target Support Files/Pods-CammingTests/Pods-CammingTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				353C008A261BF7008CEE7EFA /* Pods_Camming.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0C1AC7437C64BFF69B80F4C /* Pods_CammingTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +82,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC81F074432CF4D77C54211A /* Pods_Camming_CammingUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6391E299A3B96C26DBAF4D6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				69325DB908A05E0E88818B1E /* Pods-Camming.debug.xcconfig */,
+				5E53C46072556E7B1DCF587E /* Pods-Camming.release.xcconfig */,
+				B8184FF2E1AD9669A8222E6D /* Pods-Camming-CammingUITests.debug.xcconfig */,
+				13D181976E7CC36EABA05825 /* Pods-Camming-CammingUITests.release.xcconfig */,
+				7C6E3BCBA3250E2F19D66E25 /* Pods-CammingTests.debug.xcconfig */,
+				EF53F2751ED43E6F99407F77 /* Pods-CammingTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B1051CD328B1059A006205BB = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +109,8 @@
 				B1051CF528B1059C006205BB /* CammingTests */,
 				B1051CFF28B1059C006205BB /* CammingUITests */,
 				B1051CDD28B1059A006205BB /* Products */,
+				6391E299A3B96C26DBAF4D6C /* Pods */,
+				F966C41514DDC4F7C0F251D8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,8 +129,7 @@
 			children = (
 				B1051CDF28B1059A006205BB /* AppDelegate.swift */,
 				B1051CE128B1059A006205BB /* SceneDelegate.swift */,
-				B1051CE328B1059A006205BB /* ViewController.swift */,
-				B1051CE528B1059A006205BB /* Main.storyboard */,
+				B1051CE328B1059A006205BB /* HomeViewController.swift */,
 				B1051CE828B1059C006205BB /* Assets.xcassets */,
 				B1051CEA28B1059C006205BB /* LaunchScreen.storyboard */,
 				B1051CED28B1059C006205BB /* Info.plist */,
@@ -127,6 +154,16 @@
 			path = CammingUITests;
 			sourceTree = "<group>";
 		};
+		F966C41514DDC4F7C0F251D8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6FA2EB78F990FF5A9ACAF76B /* Pods_Camming.framework */,
+				4B63BF5FE8A3BEF805275CAB /* Pods_Camming_CammingUITests.framework */,
+				42914B89957DF77F489CA4FD /* Pods_CammingTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +171,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1051D0628B1059C006205BB /* Build configuration list for PBXNativeTarget "Camming" */;
 			buildPhases = (
+				201C6FAD60CE6C5E7048227D /* [CP] Check Pods Manifest.lock */,
 				B1051CD828B1059A006205BB /* Sources */,
 				B1051CD928B1059A006205BB /* Frameworks */,
 				B1051CDA28B1059A006205BB /* Resources */,
+				B1051D0F28B1069F006205BB /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -151,6 +190,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1051D0928B1059C006205BB /* Build configuration list for PBXNativeTarget "CammingTests" */;
 			buildPhases = (
+				FE8E9289E3F00C14713E1FEC /* [CP] Check Pods Manifest.lock */,
 				B1051CEE28B1059C006205BB /* Sources */,
 				B1051CEF28B1059C006205BB /* Frameworks */,
 				B1051CF028B1059C006205BB /* Resources */,
@@ -169,6 +209,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B1051D0C28B1059C006205BB /* Build configuration list for PBXNativeTarget "CammingUITests" */;
 			buildPhases = (
+				5C5FAC30CC1560C707045451 /* [CP] Check Pods Manifest.lock */,
 				B1051CF828B1059C006205BB /* Sources */,
 				B1051CF928B1059C006205BB /* Frameworks */,
 				B1051CFA28B1059C006205BB /* Resources */,
@@ -233,7 +274,6 @@
 			files = (
 				B1051CEC28B1059C006205BB /* LaunchScreen.storyboard in Resources */,
 				B1051CE928B1059C006205BB /* Assets.xcassets in Resources */,
-				B1051CE728B1059A006205BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,12 +293,99 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		201C6FAD60CE6C5E7048227D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Camming-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C5FAC30CC1560C707045451 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Camming-CammingUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1051D0F28B1069F006205BB /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		FE8E9289E3F00C14713E1FEC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CammingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B1051CD828B1059A006205BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1051CE428B1059A006205BB /* ViewController.swift in Sources */,
+				B1051CE428B1059A006205BB /* HomeViewController.swift in Sources */,
 				B1051CE028B1059A006205BB /* AppDelegate.swift in Sources */,
 				B1051CE228B1059A006205BB /* SceneDelegate.swift in Sources */,
 			);
@@ -297,14 +424,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B1051CE528B1059A006205BB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B1051CE628B1059A006205BB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B1051CEA28B1059C006205BB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -432,6 +551,7 @@
 		};
 		B1051D0728B1059C006205BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69325DB908A05E0E88818B1E /* Pods-Camming.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -442,7 +562,6 @@
 				INFOPLIST_FILE = Camming/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -460,6 +579,7 @@
 		};
 		B1051D0828B1059C006205BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E53C46072556E7B1DCF587E /* Pods-Camming.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -470,7 +590,6 @@
 				INFOPLIST_FILE = Camming/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -488,6 +607,7 @@
 		};
 		B1051D0A28B1059C006205BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C6E3BCBA3250E2F19D66E25 /* Pods-CammingTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +628,7 @@
 		};
 		B1051D0B28B1059C006205BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF53F2751ED43E6F99407F77 /* Pods-CammingTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -528,6 +649,7 @@
 		};
 		B1051D0D28B1059C006205BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8184FF2E1AD9669A8222E6D /* Pods-Camming-CammingUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -546,6 +668,7 @@
 		};
 		B1051D0E28B1059C006205BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13D181976E7CC36EABA05825 /* Pods-Camming-CammingUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
