@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct Checklist: Codable {
-    let name: String
-    let state: CheckState
+    var name: String
+    var state: CheckState
 }
 
 enum CheckState: String, Codable {

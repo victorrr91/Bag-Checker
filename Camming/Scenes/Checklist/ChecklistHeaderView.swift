@@ -1,5 +1,5 @@
 //
-//  ChecklistTableHeaderView.swift
+//  ChecklistHeaderView.swift
 //  Camming
 //
 //  Created by Victor Lee on 2022/08/22.
@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-final class ChecklistTableHeaderView: UITableViewHeaderFooterView {
-    static let identifier = "ChecklistTableHeaderView"
+final class ChecklistHeaderView: UICollectionReusableView {
+    static let identifier = "ChecklistHeaderView"
 
     private var categories: [String] = []
 
-    private weak var delegate: ChecklistTableHeaderViewDelegate?
+    private weak var delegate: ChecklistHeaderViewCellDelegate?
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -38,7 +38,7 @@ final class ChecklistTableHeaderView: UITableViewHeaderFooterView {
         return button
     }()
 
-    func setup(categories: [String], delegate: ChecklistTableHeaderViewDelegate?) {
+    func setup(categories: [String], delegate: ChecklistHeaderViewCellDelegate?) {
         self.categories = categories
         self.delegate = delegate
 
@@ -58,7 +58,7 @@ final class ChecklistTableHeaderView: UITableViewHeaderFooterView {
     }
 }
 
-extension ChecklistTableHeaderView: UICollectionViewDataSource {
+extension ChecklistHeaderView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }

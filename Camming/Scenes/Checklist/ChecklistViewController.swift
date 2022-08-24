@@ -15,21 +15,24 @@ final class ChecklistViewController: UIViewController {
     private var categories: [String] = []
     private var checklists: [Checklist] = []
 
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.dataSource = self
-        tableView.delegate = self
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 16.0
 
-        tableView.register(
-            ChecklistTableViewCell.self,
-            forCellReuseIdentifier: ChecklistTableViewCell.identifier
-        )
-        tableView.register(
-            ChecklistTableHeaderView.self,
-            forHeaderFooterViewReuseIdentifier: ChecklistTableHeaderView.identifier
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+
+        collectionView.register(ChecklistViewCell.self, forCellWithReuseIdentifier: ChecklistViewCell.identifier)
+
+        collectionView.register(
+            ChecklistHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ChecklistHeaderView.identifier
         )
 
-        return tableView
+        return collectionView
     }()
 
     private lazy var addChecklistButton: UIButton = {
@@ -40,6 +43,166 @@ final class ChecklistViewController: UIViewController {
 
         return button
     }()
+
+    private lazy var separator: UIView = {
+        let view = UIView()
+        view.backgroundColor = .secondarySystemBackground
+
+        return view
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupLayout()
+
+        currentCategory = UserDefaults.standard.categories.first ?? ""
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        categories = UserDefaults.standard.categories
+        checklists = UserDefaults.standard.getChecklists(currentCategory)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        UserDefaults.standard.setChecklists(checklists, currentCategory)
+
+        super.viewWillDisappear(animated)
+    }
+}
+
+extension ChecklistViewController: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: ChecklistViewCell.identifier,
+            for: indexPath
+        ) as? ChecklistViewCell
+        else { return UICollectionViewCell() }
+        let checklist = checklists[indexPath.row]
+
+        cell.stateButton.tag = indexPath.row
+        cell.setup(checklist: checklist, delegate: self)
+
+        return cell
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: ChecklistHeaderView.identifier,
+            for: indexPath
+        ) as? ChecklistHeaderView
+        else { return UICollectionReusableView() }
+
+        header.setup(categories: categories, delegate: self)
+        header.addButton.addTarget(self, action: #selector(didTapCategoryAddButton), for: .touchUpInside)
+
+        return header
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return checklists.count
+    }
+}
+
+extension ChecklistViewController: UICollectionViewDelegate {}
+
+extension ChecklistViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let width = collectionView.frame.width
+        let height = 36.0
+
+        return CGSize(width: width, height: height)
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
+        let width = collectionView.frame.width
+        let height = 60.0
+
+        return CGSize(width: width, height: height)
+    }
+}
+
+extension ChecklistViewController: ChecklistViewCellDelegate {
+    func checklistStateChanged(state: CheckState, index: Int) {
+        checklists[index].state = state
+    }
+}
+
+extension ChecklistViewController: ChecklistHeaderViewCellDelegate {
+    func didSelectCategory(_ selectedCategory: String) {
+        UserDefaults.standard.setChecklists(checklists, currentCategory)
+        self.currentCategory = selectedCategory
+        self.checklists = UserDefaults.standard.getChecklists(currentCategory)
+        self.collectionView.reloadData()
+    }
+}
+
+private extension ChecklistViewController {
+    func setupLayout() {
+        [collectionView, addChecklistButton, separator]
+            .forEach { self.view.addSubview($0) }
+
+        collectionView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(addChecklistButton.snp.top).offset(16.0)
+        }
+
+        addChecklistButton.snp.makeConstraints {
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-1.0)
+            $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(60.0)
+        }
+        separator.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(addChecklistButton.snp.bottom)
+        }
+    }
+
+    @objc func didTapCategoryAddButton() {
+        let alertController = UIAlertController(title: "카테고리 추가하기", message: nil, preferredStyle: .alert)
+        alertController.addTextField()
+
+        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let newCategory = alertController.textFields?[0].text else { return }
+
+            if newCategory != "" {
+                self?.categories.append(newCategory)
+                UserDefaults.standard.categories = self?.categories ?? []
+                UserDefaults.standard.addCategory(name: newCategory)
+
+                self?.collectionView.reloadSections(IndexSet(integer: 0))
+
+                // MARK: 이걸 안하면 왜인지 위로 튀었다가 내려옴
+                self?.collectionView.reloadData()
+            }
+        }
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alertController.addAction(confirm)
+        alertController.addAction(cancel)
+
+        present(alertController, animated: true)
+    }
 
     @objc func didTapAddChecklistButton() {
         if checklists.last?.name != "" {
@@ -59,7 +222,7 @@ final class ChecklistViewController: UIViewController {
 
                     UserDefaults.standard.setChecklists(self?.checklists ?? [], self?.currentCategory ?? "")
 
-                    self?.tableView.reloadData()
+                    self?.collectionView.reloadItems(at: [IndexPath(row: self?.checklists.count ?? 0, section: 0)])
                 }
             }
 
@@ -69,129 +232,6 @@ final class ChecklistViewController: UIViewController {
             alertController.addAction(cancel)
 
             present(alertController, animated: true)
-        }
-
-    }
-
-    private lazy var separator: UIView = {
-        let view = UIView()
-        view.backgroundColor = .secondarySystemBackground
-
-        return view
-    }()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupLayout()
-
-        categories = UserDefaults.standard.categories
-        currentCategory = categories.first ?? ""
-
-        checklists = UserDefaults.standard.getChecklists(currentCategory)
-        print(checklists)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
-
-    @objc func didTapCategoryAddButton() {
-        let alertController = UIAlertController(title: "카테고리 추가하기", message: nil, preferredStyle: .alert)
-        alertController.addTextField()
-
-        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            guard let newCategory = alertController.textFields?[0].text else { return }
-
-            if newCategory != "" {
-                self?.categories.append(newCategory)
-                UserDefaults.standard.categories = self?.categories ?? []
-                UserDefaults.standard.addCategory(name: newCategory)
-
-                self?.tableView.reloadSections(IndexSet(integer: 0), with: .none)
-
-                // MARK: 이걸 안하면 왜인지 위로 튀었다가 내려옴
-                self?.tableView.reloadData()
-            }
-        }
-
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-
-        alertController.addAction(confirm)
-        alertController.addAction(cancel)
-
-        present(alertController, animated: true)
-    }
-}
-
-extension ChecklistViewController: UITableViewDelegate {
-}
-
-extension ChecklistViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return checklists.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: ChecklistTableViewCell.identifier,
-            for: indexPath
-        ) as? ChecklistTableViewCell
-        else { return UITableViewCell() }
-
-        let checklist = checklists[indexPath.row]
-
-        cell.setup(checklist)
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(
-            withIdentifier: ChecklistTableHeaderView.identifier
-        ) as? ChecklistTableHeaderView
-        else { return UIView() }
-
-        header.setup(categories: categories, delegate: self)
-
-        header.addButton.addTarget(self, action: #selector(didTapCategoryAddButton), for: .touchUpInside)
-
-        return header
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
-    }
-}
-
-extension ChecklistViewController: ChecklistTableHeaderViewDelegate {
-    func didSelectCategory(_ selectedCategory: String) {
-        currentCategory = selectedCategory
-        checklists = UserDefaults.standard.getChecklists(currentCategory)
-        tableView.reloadData()
-    }
-}
-
-private extension ChecklistViewController {
-    func setupLayout() {
-        [tableView, addChecklistButton, separator]
-            .forEach { self.view.addSubview($0) }
-
-        tableView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(addChecklistButton.snp.top).offset(16.0)
-        }
-
-        addChecklistButton.snp.makeConstraints {
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-1.0)
-            $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(60.0)
-        }
-        separator.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
-            $0.top.equalTo(addChecklistButton.snp.bottom)
         }
     }
 }

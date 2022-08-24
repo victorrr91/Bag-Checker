@@ -8,14 +8,14 @@
 import UIKit
 import SnapKit
 
-protocol ChecklistTableHeaderViewDelegate: AnyObject {
+protocol ChecklistHeaderViewCellDelegate: AnyObject {
     func didSelectCategory(_ selectedCategory: String)
 }
 
 final class ChecklistHeaderViewCell: UICollectionViewCell {
     static let identifier = "ChecklistHeaderViewCell"
 
-    private weak var delegate: ChecklistTableHeaderViewDelegate?
+    private weak var delegate: ChecklistHeaderViewCellDelegate?
 
     private lazy var categoryButton: UIButton = {
         let button = UIButton()
@@ -33,7 +33,7 @@ final class ChecklistHeaderViewCell: UICollectionViewCell {
         delegate?.didSelectCategory(categoryButton.titleLabel?.text ?? "")
     }
 
-    func setup(_ category: String, delegate: ChecklistTableHeaderViewDelegate?) {
+    func setup(_ category: String, delegate: ChecklistHeaderViewCellDelegate?) {
         categoryButton.setTitle(category, for: .normal)
 
         self.delegate = delegate
