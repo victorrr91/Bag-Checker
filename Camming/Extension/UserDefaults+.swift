@@ -42,12 +42,9 @@ extension UserDefaults {
         return (try? PropertyListDecoder().decode([Checklist].self, from: data)) ?? []
     }
 
-    func setChecklists(_ newValue: Checklist, _ currentCategory: String) {
-        var currentChecklists: [Checklist] = getChecklists(currentCategory)
-        currentChecklists.append(newValue)
-
+    func setChecklists(_ newValue: [Checklist], _ currentCategory: String) {
         UserDefaults.standard.setValue(
-            try? PropertyListEncoder().encode(currentChecklists),
+            try? PropertyListEncoder().encode(newValue),
             forKey: currentCategory
         )
     }
