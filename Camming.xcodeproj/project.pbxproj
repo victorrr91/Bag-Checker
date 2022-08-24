@@ -19,6 +19,11 @@
 		B1051D1228B108C2006205BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B1051D1128B108C2006205BB /* SnapKit */; };
 		B1051D1528B10941006205BB /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1428B10941006205BB /* TabBarItem.swift */; };
 		B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1628B10C14006205BB /* ChecklistViewController.swift */; };
+		B14B039628B1FF2C008C4132 /* ChecklistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B039528B1FF2C008C4132 /* ChecklistTableViewCell.swift */; };
+		B1565DB428B31613001D4A9D /* ChecklistTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB328B31613001D4A9D /* ChecklistTableHeaderView.swift */; };
+		B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB628B35D71001D4A9D /* Checklist.swift */; };
+		B1565DBA28B365B5001D4A9D /* ChecklistHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */; };
+		B1565DBC28B3B3D1001D4A9D /* UserDefaults+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DBB28B3B3D1001D4A9D /* UserDefaults+.swift */; };
 		DC81F074432CF4D77C54211A /* Pods_Camming_CammingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B63BF5FE8A3BEF805275CAB /* Pods_Camming_CammingUITests.framework */; };
 		E0C1AC7437C64BFF69B80F4C /* Pods_CammingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42914B89957DF77F489CA4FD /* Pods_CammingTests.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +67,11 @@
 		B1051D0228B1059C006205BB /* CammingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CammingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B1051D1428B10941006205BB /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		B1051D1628B10C14006205BB /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
+		B14B039528B1FF2C008C4132 /* ChecklistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistTableViewCell.swift; sourceTree = "<group>"; };
+		B1565DB328B31613001D4A9D /* ChecklistTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistTableHeaderView.swift; sourceTree = "<group>"; };
+		B1565DB628B35D71001D4A9D /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
+		B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistHeaderViewCell.swift; sourceTree = "<group>"; };
+		B1565DBB28B3B3D1001D4A9D /* UserDefaults+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+.swift"; sourceTree = "<group>"; };
 		B8184FF2E1AD9669A8222E6D /* Pods-Camming-CammingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camming-CammingUITests.debug.xcconfig"; path = "Target Support Files/Pods-Camming-CammingUITests/Pods-Camming-CammingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EF53F2751ED43E6F99407F77 /* Pods-CammingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CammingTests.release.xcconfig"; path = "Target Support Files/Pods-CammingTests/Pods-CammingTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +145,8 @@
 			children = (
 				B1051CDF28B1059A006205BB /* AppDelegate.swift */,
 				B1051CE128B1059A006205BB /* SceneDelegate.swift */,
+				B1565DB828B35D76001D4A9D /* Models */,
+				B1565DBD28B3B3D5001D4A9D /* Extension */,
 				B1051D1328B10928006205BB /* Scenes */,
 				B1051CE828B1059C006205BB /* Assets.xcassets */,
 				B1051CEA28B1059C006205BB /* LaunchScreen.storyboard */,
@@ -164,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				B1051D1828B10DC7006205BB /* TabBar */,
-				B1051D1628B10C14006205BB /* ChecklistViewController.swift */,
+				B1565DB528B318BE001D4A9D /* Checklist */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -176,6 +188,33 @@
 				B1051D1428B10941006205BB /* TabBarItem.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		B1565DB528B318BE001D4A9D /* Checklist */ = {
+			isa = PBXGroup;
+			children = (
+				B1051D1628B10C14006205BB /* ChecklistViewController.swift */,
+				B14B039528B1FF2C008C4132 /* ChecklistTableViewCell.swift */,
+				B1565DB328B31613001D4A9D /* ChecklistTableHeaderView.swift */,
+				B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */,
+			);
+			path = Checklist;
+			sourceTree = "<group>";
+		};
+		B1565DB828B35D76001D4A9D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B1565DB628B35D71001D4A9D /* Checklist.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B1565DBD28B3B3D5001D4A9D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B1565DBB28B3B3D1001D4A9D /* UserDefaults+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		F966C41514DDC4F7C0F251D8 /* Frameworks */ = {
@@ -415,10 +454,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1565DBA28B365B5001D4A9D /* ChecklistHeaderViewCell.swift in Sources */,
 				B1051CE428B1059A006205BB /* TabBarController.swift in Sources */,
+				B1565DBC28B3B3D1001D4A9D /* UserDefaults+.swift in Sources */,
 				B1051CE028B1059A006205BB /* AppDelegate.swift in Sources */,
 				B1051D1528B10941006205BB /* TabBarItem.swift in Sources */,
 				B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */,
+				B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */,
+				B1565DB428B31613001D4A9D /* ChecklistTableHeaderView.swift in Sources */,
+				B14B039628B1FF2C008C4132 /* ChecklistTableViewCell.swift in Sources */,
 				B1051CE228B1059A006205BB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
