@@ -27,6 +27,7 @@ final class ChecklistHeaderView: UICollectionReusableView {
         )
 
         collectionView.dataSource = self
+        collectionView.delegate = self
 
         return collectionView
     }()
@@ -47,7 +48,7 @@ final class ChecklistHeaderView: UICollectionReusableView {
 
         collectionView.snp.makeConstraints {
             $0.leading.top.bottom.equalToSuperview()
-            $0.trailing.equalTo(addButton.snp.leading).offset(-32.0)
+            $0.trailing.equalTo(addButton.snp.leading).inset(8.0)
         }
 
         addButton.snp.makeConstraints {
@@ -73,9 +74,13 @@ extension ChecklistHeaderView: UICollectionViewDataSource {
         ) as? ChecklistHeaderViewCell
         else { return UICollectionViewCell() }
 
-        let category = categories[indexPath.row]
+        let category = categories[indexPath.item]
+        
         cell.setup(category, delegate: delegate)
 
         return cell
     }
+}
+
+extension ChecklistHeaderView: UICollectionViewDelegate {
 }

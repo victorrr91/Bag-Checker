@@ -8,12 +8,15 @@
 import Foundation
 import UIKit
 import SnapKit
+import SwipeCellKit
 
 final class ChecklistViewController: UIViewController {
     private var currentCategory = ""
 
     private var categories: [String] = []
     private var checklists: [Checklist] = []
+
+    private var longPressGesture: UILongPressGestureRecognizer!
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -54,9 +57,10 @@ final class ChecklistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupLayout()
-
         currentCategory = UserDefaults.standard.categories.first ?? ""
+
+        configure()
+        setupLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +92,8 @@ extension ChecklistViewController: UICollectionViewDataSource {
         cell.stateButton.tag = indexPath.row
         cell.setup(checklist: checklist, delegate: self)
 
+        cell.delegate = self
+
         return cell
     }
 
@@ -111,6 +117,27 @@ extension ChecklistViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return checklists.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        moveItemAt sourceIndexPath: IndexPath,
+        to destinationIndexPath: IndexPath
+    ) {
+        if sourceIndexPath.item < destinationIndexPath.item {
+            let insertValue = checklists[sourceIndexPath.item]
+            checklists.insert(insertValue, at: destinationIndexPath.item + 1)
+            checklists.remove(at: sourceIndexPath.item)
+        } else if sourceIndexPath.item > destinationIndexPath.item {
+            let insertValue = checklists[sourceIndexPath.item]
+            checklists.insert(insertValue, at: destinationIndexPath.item)
+            checklists.remove(at: sourceIndexPath.item + 1)
+        }
+        UserDefaults.standard.setChecklists(checklists, currentCategory)
     }
 }
 
@@ -137,6 +164,43 @@ extension ChecklistViewController: UICollectionViewDelegateFlowLayout {
         let height = 60.0
 
         return CGSize(width: width, height: height)
+    }
+}
+
+extension ChecklistViewController: SwipeCollectionViewCellDelegate {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        editActionsForItemAt indexPath: IndexPath,
+        for orientation: SwipeActionsOrientation
+    ) -> [SwipeAction]? {
+        switch orientation {
+        case .right:
+            let deleteAction = SwipeAction(style: .default, title: nil) { [weak self] _, indexPath in
+
+                self?.checklists.remove(at: indexPath.row)
+                collectionView.deleteItems(at: [indexPath])
+            }
+
+            deleteAction.image = UIImage(systemName: "trash")
+            deleteAction.backgroundColor = .red
+            return [deleteAction]
+        default:
+            return []
+        }
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        editActionsOptionsForItemAt indexPath: IndexPath,
+        for orientation: SwipeActionsOrientation
+    ) -> SwipeOptions {
+        var options = SwipeOptions()
+
+        options.expansionStyle = .destructive(automaticallyDelete: false)
+        options.transitionStyle = .drag
+        options.maximumButtonWidth = 40.0
+
+        return options
     }
 }
 
@@ -168,12 +232,32 @@ private extension ChecklistViewController {
         addChecklistButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-1.0)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(60.0)
+            $0.width.height.equalTo(50.0)
         }
         separator.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(addChecklistButton.snp.bottom)
+        }
+    }
+
+    func configure() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongGesture))
+        collectionView.addGestureRecognizer(longPressGesture)
+    }
+
+    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView))
+            else { break }
+            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
         }
     }
 
@@ -191,7 +275,6 @@ private extension ChecklistViewController {
 
                 self?.collectionView.reloadSections(IndexSet(integer: 0))
 
-                // MARK: 이걸 안하면 왜인지 위로 튀었다가 내려옴
                 self?.collectionView.reloadData()
             }
         }
@@ -219,10 +302,9 @@ private extension ChecklistViewController {
                 if text != "" {
                     let newChecklist = Checklist(name: text, state: .toBuy)
                     self?.checklists.append(newChecklist)
+                    self?.collectionView.insertItems(at: [IndexPath(row: (self?.checklists.count ?? 0) - 1, section: 0)])
 
                     UserDefaults.standard.setChecklists(self?.checklists ?? [], self?.currentCategory ?? "")
-
-                    self?.collectionView.reloadItems(at: [IndexPath(row: self?.checklists.count ?? 0, section: 0)])
                 }
             }
 

@@ -17,7 +17,20 @@ final class ChecklistHeaderViewCell: UICollectionViewCell {
 
     private weak var delegate: ChecklistHeaderViewCellDelegate?
 
-    private lazy var categoryButton: UIButton = {
+//    override var isSelected: Bool {
+//        didSet {
+//            if isSelected {
+//                categoryButton.setTitleColor(UIColor.white, for: .normal)
+//                categoryButton.backgroundColor = .cyan
+//            } else {
+//                print(isSelected)
+//                categoryButton.setTitleColor(UIColor.white, for: .normal)
+//                categoryButton.backgroundColor = .orange
+//            }
+//        }
+//    }
+
+    lazy var categoryButton: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .semibold)
         button.setTitleColor(UIColor.white, for: .normal)

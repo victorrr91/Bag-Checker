@@ -19,6 +19,7 @@
 		B1051D1228B108C2006205BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B1051D1128B108C2006205BB /* SnapKit */; };
 		B1051D1528B10941006205BB /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1428B10941006205BB /* TabBarItem.swift */; };
 		B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1628B10C14006205BB /* ChecklistViewController.swift */; };
+		B145F29F28B91E0800954B6A /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = B145F29E28B91E0800954B6A /* SwipeCellKit */; };
 		B14B039628B1FF2C008C4132 /* ChecklistViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */; };
 		B1565DB428B31613001D4A9D /* ChecklistHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */; };
 		B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB628B35D71001D4A9D /* Checklist.swift */; };
@@ -82,6 +83,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				353C008A261BF7008CEE7EFA /* Pods_Camming.framework in Frameworks */,
+				B145F29F28B91E0800954B6A /* SwipeCellKit in Frameworks */,
 				B1051D1228B108C2006205BB /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +249,7 @@
 			name = Camming;
 			packageProductDependencies = (
 				B1051D1128B108C2006205BB /* SnapKit */,
+				B145F29E28B91E0800954B6A /* SwipeCellKit */,
 			);
 			productName = Camming;
 			productReference = B1051CDC28B1059A006205BB /* Camming.app */;
@@ -324,6 +327,7 @@
 			mainGroup = B1051CD328B1059A006205BB;
 			packageReferences = (
 				B1051D1028B108C2006205BB /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B145F29D28B91E0800954B6A /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
 			);
 			productRefGroup = B1051CDD28B1059A006205BB /* Products */;
 			projectDirPath = "";
@@ -811,6 +815,14 @@
 				kind = branch;
 			};
 		};
+		B145F29D28B91E0800954B6A /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
+			requirement = {
+				kind = exactVersion;
+				version = 2.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -818,6 +830,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B1051D1028B108C2006205BB /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		B145F29E28B91E0800954B6A /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B145F29D28B91E0800954B6A /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

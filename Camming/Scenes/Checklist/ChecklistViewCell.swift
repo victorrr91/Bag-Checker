@@ -7,17 +7,18 @@
 
 import SnapKit
 import UIKit
+import SwipeCellKit
 
 protocol ChecklistViewCellDelegate: AnyObject {
     func checklistStateChanged(state: CheckState, index: Int)
 }
 
-final class ChecklistViewCell: UICollectionViewCell {
+final class ChecklistViewCell: SwipeCollectionViewCell {
     static let identifier = "ChecklistViewCell"
 
-    private weak var delegate: ChecklistViewCellDelegate?
+    private weak var stateDelegate: ChecklistViewCellDelegate?
 
-    private lazy var lightImageView: UIImageView = {
+    private lazy var bookmark: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "star")
 
@@ -47,8 +48,14 @@ final class ChecklistViewCell: UICollectionViewCell {
         let button = UIButton()
         button.setImage(UIImage(systemName: "suitcase.fill"), for: .normal)
 
+        button.addTarget(self, action: #selector(didTapPackButton), for: .touchUpInside)
+
         return button
     }()
+
+    @objc func didTapPackButton() {
+
+    }
 
     private lazy var separator: UIView = {
         let view = UIView()
@@ -61,32 +68,36 @@ final class ChecklistViewCell: UICollectionViewCell {
         switch stateButton.titleLabel?.text {
         case CheckState.toBuy.rawValue:
             stateButton.setTitle(CheckState.toPack.rawValue, for: .normal)
-            delegate?.checklistStateChanged(state: CheckState.toPack, index: stateButton.tag)
+            stateDelegate?.checklistStateChanged(state: CheckState.toPack, index: stateButton.tag)
             stateButton.backgroundColor = CheckState.toPack.color
+
         case CheckState.toPack.rawValue:
             stateButton.setTitle(CheckState.ready.rawValue, for: .normal)
-            delegate?.checklistStateChanged(state: CheckState.ready, index: stateButton.tag)
+            stateDelegate?.checklistStateChanged(state: CheckState.ready, index: stateButton.tag)
             stateButton.backgroundColor = CheckState.ready.color
+
             packButton.isHidden = false
         case CheckState.ready.rawValue:
             stateButton.setTitle(CheckState.toBuy.rawValue, for: .normal)
-            delegate?.checklistStateChanged(state: CheckState.toBuy, index: stateButton.tag)
+            stateDelegate?.checklistStateChanged(state: CheckState.toBuy, index: stateButton.tag)
             stateButton.backgroundColor = CheckState.toBuy.color
             packButton.isHidden = true
+
         default:
             return
         }
     }
 
     func setup(checklist: Checklist, delegate: ChecklistViewCellDelegate?) {
-        self.delegate = delegate
+        self.stateDelegate = delegate
 
         setupLayout()
 
         nameLabel.text = checklist.name
         stateButton.setTitle(checklist.state.rawValue, for: .normal)
         stateButton.backgroundColor = checklist.state.color
-        if stateButton.titleLabel?.text == CheckState.toBuy.rawValue || stateButton.titleLabel?.text == CheckState.toPack.rawValue {
+        if stateButton.titleLabel?.text == CheckState.toBuy.rawValue ||
+            stateButton.titleLabel?.text == CheckState.toPack.rawValue {
             packButton.isHidden = true
         } else {
             packButton.isHidden = false
@@ -97,7 +108,7 @@ final class ChecklistViewCell: UICollectionViewCell {
 private extension ChecklistViewCell {
     func setupLayout() {
         [
-            lightImageView,
+            bookmark,
             nameLabel,
             stateButton,
             packButton,
@@ -105,26 +116,26 @@ private extension ChecklistViewCell {
         ]
             .forEach { addSubview($0) }
 
-        lightImageView.snp.makeConstraints {
+        bookmark.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20.0)
-            $0.centerY.equalToSuperview()
-            $0.height.width.equalTo(12.0)
+            $0.centerY.equalToSuperview().offset(1.5)
+            $0.height.width.equalTo(16.0)
         }
 
         nameLabel.snp.makeConstraints {
-            $0.leading.equalTo(lightImageView.snp.trailing).offset(16.0)
+            $0.leading.equalTo(bookmark.snp.trailing).offset(16.0)
             $0.trailing.equalTo(stateButton.snp.leading).offset(-8.0)
             $0.centerY.equalToSuperview()
         }
 
         packButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20.0)
+            $0.trailing.equalToSuperview().inset(50.0)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(20.0)
         }
 
         stateButton.snp.makeConstraints {
-            $0.trailing.equalTo(packButton.snp.leading).offset(-16.0)
+            $0.trailing.equalTo(packButton.snp.leading).offset(-8.0)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(60.0)
         }
