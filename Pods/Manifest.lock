@@ -1,16 +1,20 @@
 PODS:
+  - Floaty (4.2.0)
   - SwiftLint (0.47.1)
 
 DEPENDENCIES:
+  - Floaty (~> 4.2.0)
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Floaty
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   SwiftLint: f80f1be7fa96d30e0aa68e58d45d4ea1ccaac519
 
-PODFILE CHECKSUM: 929de40a8b67f0a852ccd4a9d466e6c9d61b9464
+PODFILE CHECKSUM: 48f361f01c5e45173e99bdc4700ed8d3693adcdd
 
 COCOAPODS: 1.11.2

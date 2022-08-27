@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E98454C4C27A23A847B33942233948F9"
-               BuildableName = "Pods_Camming_CammingUITests.framework"
-               BlueprintName = "Pods-Camming-CammingUITests"
+               BlueprintIdentifier = "D2A775A88EA787684F2905BCB73F96D1"
+               BuildableName = "Floaty.framework"
+               BlueprintName = "Floaty"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

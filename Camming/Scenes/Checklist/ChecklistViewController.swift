@@ -5,7 +5,7 @@
 //  Created by Victor Lee on 2022/08/20.
 //
 
-import Foundation
+import Floaty
 import UIKit
 import SnapKit
 import SwipeCellKit
@@ -47,6 +47,16 @@ final class ChecklistViewController: UIViewController {
         return button
     }()
 
+    private lazy var floaty: Floaty = {
+        let floaty = Floaty(size: 50.0)
+        floaty.addItem("What's in my bag", icon: UIImage(systemName: "suitcase.fill")!)
+
+        floaty.buttonImage = UIImage(systemName: "questionmark.circle.fill")?
+            .withTintColor(.white, renderingMode: .alwaysOriginal)
+
+        return floaty
+    }()
+
     private lazy var separator: UIView = {
         let view = UIView()
         view.backgroundColor = .secondarySystemBackground
@@ -75,6 +85,20 @@ final class ChecklistViewController: UIViewController {
 
         super.viewWillDisappear(animated)
     }
+
+    @objc func didTapPackButton(_ sender: UIButton) {
+        let checklist = checklists[sender.tag]
+        let selectBagViewController = SelectBagsViewController(delegate: self)
+        selectBagViewController.modalPresentationStyle = .popover
+
+        present(selectBagViewController, animated: true)
+    }
+}
+
+extension ChecklistViewController: SelectBagsViewControllerDelegate {
+    func selectBag() {
+        
+    }
 }
 
 extension ChecklistViewController: UICollectionViewDataSource {
@@ -94,6 +118,9 @@ extension ChecklistViewController: UICollectionViewDataSource {
 
         cell.delegate = self
 
+        cell.packButton.tag = indexPath.row
+        cell.packButton.addTarget(self, action: #selector(didTapPackButton), for: .touchUpInside)
+
         return cell
     }
 
@@ -110,7 +137,7 @@ extension ChecklistViewController: UICollectionViewDataSource {
         else { return UICollectionReusableView() }
 
         header.setup(categories: categories, delegate: self)
-        header.addButton.addTarget(self, action: #selector(didTapCategoryAddButton), for: .touchUpInside)
+        header.settingButton.addTarget(self, action: #selector(didTapCategorySettingButton), for: .touchUpInside)
 
         return header
     }
@@ -219,9 +246,16 @@ extension ChecklistViewController: ChecklistHeaderViewCellDelegate {
     }
 }
 
+extension ChecklistViewController: CategorySettingViewControllerDelegate {
+    func tappedConfirmButton() {
+        categories = UserDefaults.standard.categories
+        collectionView.reloadSections(IndexSet(integer: 0))
+    }
+}
+
 private extension ChecklistViewController {
     func setupLayout() {
-        [collectionView, addChecklistButton, separator]
+        [collectionView, addChecklistButton, floaty, separator]
             .forEach { self.view.addSubview($0) }
 
         collectionView.snp.makeConstraints {
@@ -234,6 +268,9 @@ private extension ChecklistViewController {
             $0.centerX.equalToSuperview()
             $0.width.height.equalTo(50.0)
         }
+
+        floaty.paddingY = 100.0
+
         separator.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
@@ -261,30 +298,9 @@ private extension ChecklistViewController {
         }
     }
 
-    @objc func didTapCategoryAddButton() {
-        let alertController = UIAlertController(title: "카테고리 추가하기", message: nil, preferredStyle: .alert)
-        alertController.addTextField()
-
-        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            guard let newCategory = alertController.textFields?[0].text else { return }
-
-            if newCategory != "" {
-                self?.categories.append(newCategory)
-                UserDefaults.standard.categories = self?.categories ?? []
-                UserDefaults.standard.addCategory(name: newCategory)
-
-                self?.collectionView.reloadSections(IndexSet(integer: 0))
-
-                self?.collectionView.reloadData()
-            }
-        }
-
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-
-        alertController.addAction(confirm)
-        alertController.addAction(cancel)
-
-        present(alertController, animated: true)
+    @objc func didTapCategorySettingButton() {
+        let viewController = CategorySettingViewController(categories: categories, delegate: self)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     @objc func didTapAddChecklistButton() {

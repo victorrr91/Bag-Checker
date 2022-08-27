@@ -44,18 +44,19 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
         return button
     }()
 
-    private lazy var packButton: UIButton = {
+    lazy var packButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "suitcase.fill"), for: .normal)
+        button.tintColor = .init(red: 252/255, green: 108/255, blue: 109/255, alpha: 0.9)
 
-        button.addTarget(self, action: #selector(didTapPackButton), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(didTapPackButton), for: .touchUpInside)
 
         return button
     }()
 
-    @objc func didTapPackButton() {
-
-    }
+//    @objc func didTapPackButton() {
+//
+//    }
 
     private lazy var separator: UIView = {
         let view = UIView()

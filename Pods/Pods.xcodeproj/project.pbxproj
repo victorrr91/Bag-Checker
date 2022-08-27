@@ -15,38 +15,62 @@
 			dependencies = (
 			);
 			name = SwiftLint;
-			productName = SwiftLint;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		07007F1C7192D2D710A3624084CF0E78 /* Pods-CammingTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 137031323ADDF8E3C5385431B58B4AFA /* Pods-CammingTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0DADAC8BE479A543344D4A4D39CE363F /* Pods-CammingTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C3850161C078487123B273079FEA43 /* Pods-CammingTests-dummy.m */; };
-		12A7086809CB082D86213DB1A1561675 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		5B76E2D07E4C83CBBF9CE5E021C4C589 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		83A52A7C0392EDAAFE8DE844F4D17B2F /* Pods-Camming-CammingUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBBEC9C7880FA7AE6C17B4F34B6E62 /* Pods-Camming-CammingUITests-dummy.m */; };
-		B04649A304747E2A5EA313318465C002 /* Pods-Camming-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E6343A1FB26B10443F8AF61060BE8383 /* Pods-Camming-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DD1A845A30EEF2FBC0955CC7E6B136D7 /* Pods-Camming-CammingUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65E624EBB214403083D9176D870B224A /* Pods-Camming-CammingUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E68225B2BF188BBF45BD3C4226F8C114 /* Pods-Camming-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4B251BB2B94EC70F200A402D7ECE0D /* Pods-Camming-dummy.m */; };
-		FB0D042075D515638E03611523986DBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		013A0B965FB7F20BD0F87E8871221253 /* FloatyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BECF1ED7ADA4F1893317F01CE9B29C /* FloatyItem.swift */; };
+		07007F1C7192D2D710A3624084CF0E78 /* Pods-CammingTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7267A8F1A4BE3F6C4DCD4BE8E5FE3864 /* Pods-CammingTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0DADAC8BE479A543344D4A4D39CE363F /* Pods-CammingTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DEF3F2F3A2791790C56F7E6CAFB59CB /* Pods-CammingTests-dummy.m */; };
+		197533DE6434BAC49762D75A4E774AB6 /* Floaty-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 463E2238A665C0D35F7CA06DEED84A06 /* Floaty-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		224183C41F3E7E35EE13E9CD3BB36938 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		2D74284E513235F05FF064B4E59532D9 /* Pods-Camming-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C16478BA15E35852FE58B52CF0EF978D /* Pods-Camming-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		36EDF538E419A9721571437C7F1CA6DD /* FloatyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1378F7032C947A518C1343537594F714 /* FloatyViewController.swift */; };
+		5B76E2D07E4C83CBBF9CE5E021C4C589 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		6E5EC2A0F05784559606F54D6754A2F6 /* Pods-Camming-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FAA91FAAC1323798E31213E78D6880 /* Pods-Camming-dummy.m */; };
+		72C98C8817A912FB7038531F576548C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */; };
+		74E147263DFC8536D59E59806CEE6448 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		8091A6D5D32B94B079733D9D09EAE747 /* FloatyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C4C95E32AE5D85F0B42BEA6E5CEA3F0 /* FloatyDelegate.swift */; };
+		97E1375FD2970D66091C801F998FC6D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */; };
+		B3799B0B668CC34FB41863DC4F82046C /* Pods-Camming-CammingUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DB5E73BFBA8BC63712799B572E73654 /* Pods-Camming-CammingUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA7F3C2E65B19F2F4BCBFF5567024BAF /* FloatyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5CAAF739985072A80A82A3EE23823E /* FloatyManager.swift */; };
+		D3214C9C78BB1008BBE89C1F11A42B77 /* Floaty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB39BD551BAD872B5CAEE373C9E8152 /* Floaty.swift */; };
+		D3D84AC667CDBB37D3DD6B94AA8F60D9 /* Pods-Camming-CammingUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3AFD204F0DF8E18CDEA92F0AD2045E /* Pods-Camming-CammingUITests-dummy.m */; };
+		D9FB3A64C227528D834DF04B1D14583C /* FloatyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396DA44BABD07B19ECE4CEF5A0C1195D /* FloatyWindow.swift */; };
+		E660E9ACA165C6A86576E1DFE587AA53 /* UIView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21E4808929C1C13C139DAA80ADC90A1 /* UIView+Draggable.swift */; };
+		E7E9CAB3F831619EA98022C3ACBB0E8F /* Floaty-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF0218FE2666FC78E7A6C037CE556FE9 /* Floaty-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8BB1418F5D980F849F53E52D20552977 /* PBXContainerItemProxy */ = {
+		0F4F847604D5ABFD2C0EE16F6B811675 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EAC505145986018C6FF88971444F01F2;
-			remoteInfo = "Pods-Camming";
+			remoteGlobalIDString = D2A775A88EA787684F2905BCB73F96D1;
+			remoteInfo = Floaty;
 		};
-		C1948E661573E02C7A0B1F55DD91EDFE /* PBXContainerItemProxy */ = {
+		1897103FE433DC564E53383DA0ED76A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
 			remoteInfo = SwiftLint;
 		};
-		C6E989E7DB220B5717331790E02C92EA /* PBXContainerItemProxy */ = {
+		7D04C9A3A6B43EFC8C709A7AABAFFF2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2A775A88EA787684F2905BCB73F96D1;
+			remoteInfo = Floaty;
+		};
+		86B0237FBF0FA0E5755E47864E2A1135 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAC505145986018C6FF88971444F01F2;
+			remoteInfo = "Pods-Camming";
+		};
+		FA4BEA5F6F43A53119BF6CF906227871 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -56,53 +80,80 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02DBE88EB4DEA50A36A6920D31007035 /* Pods-Camming-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Camming-Info.plist"; sourceTree = "<group>"; };
-		058EEBF3C003081A1871009233A339C4 /* Pods-CammingTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CammingTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		05E8CD21DB2AEB35673DFFE96CDA4CDB /* Pods-CammingTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CammingTests.modulemap"; sourceTree = "<group>"; };
-		1035D30AB88D93165B1E4B8FA0772266 /* Pods-CammingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CammingTests.release.xcconfig"; sourceTree = "<group>"; };
-		137031323ADDF8E3C5385431B58B4AFA /* Pods-CammingTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CammingTests-umbrella.h"; sourceTree = "<group>"; };
+		0DEF3F2F3A2791790C56F7E6CAFB59CB /* Pods-CammingTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CammingTests-dummy.m"; sourceTree = "<group>"; };
+		0E95CB1E376B05DFA0D1B4920AE73452 /* Pods-Camming-CammingUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Camming-CammingUITests-frameworks.sh"; sourceTree = "<group>"; };
+		1378F7032C947A518C1343537594F714 /* FloatyViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatyViewController.swift; path = Sources/FloatyViewController.swift; sourceTree = "<group>"; };
+		13FAA91FAAC1323798E31213E78D6880 /* Pods-Camming-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Camming-dummy.m"; sourceTree = "<group>"; };
+		15A9DA56142977B9045B5E29B2E67717 /* Floaty-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Floaty-Info.plist"; sourceTree = "<group>"; };
+		1AC409AAC28E7B86673BAEFE34392AA0 /* Pods-CammingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CammingTests.release.xcconfig"; sourceTree = "<group>"; };
+		1C4C95E32AE5D85F0B42BEA6E5CEA3F0 /* FloatyDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatyDelegate.swift; path = Sources/FloatyDelegate.swift; sourceTree = "<group>"; };
 		1E12643BF65B49D15080D606A3A19394 /* Pods-Camming-CammingUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Camming-CammingUITests"; path = Pods_Camming_CammingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2BEBBEC9C7880FA7AE6C17B4F34B6E62 /* Pods-Camming-CammingUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Camming-CammingUITests-dummy.m"; sourceTree = "<group>"; };
-		2E9F1CDAB744BF69C00ACC739B5AE67E /* Pods-Camming.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Camming.modulemap"; sourceTree = "<group>"; };
-		3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
-		65E624EBB214403083D9176D870B224A /* Pods-Camming-CammingUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Camming-CammingUITests-umbrella.h"; sourceTree = "<group>"; };
-		6AE4971CC587290F50E23EF591E0DC41 /* Pods-Camming.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Camming.release.xcconfig"; sourceTree = "<group>"; };
-		6F17F7DE88ABFAECE25E5815D9376F06 /* Pods-CammingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CammingTests.debug.xcconfig"; sourceTree = "<group>"; };
-		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
-		9427A2B3E6649A8CED2AA6FAC37D8835 /* Pods-Camming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Camming.debug.xcconfig"; sourceTree = "<group>"; };
-		95C3850161C078487123B273079FEA43 /* Pods-CammingTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CammingTests-dummy.m"; sourceTree = "<group>"; };
-		99B6E67F967F35797FC08DD429011FFA /* Pods-Camming-CammingUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Camming-CammingUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		9A9C1A3AEB7DEE1BE431DAFC2864CBE6 /* Pods-Camming-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Camming-acknowledgements.plist"; sourceTree = "<group>"; };
-		9C4932C6F9F0AC0D2DD9923D9946DF23 /* Pods-Camming-CammingUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Camming-CammingUITests.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A161A14C47C7D1B4451E8E9D0D1DD95E /* Pods-Camming-CammingUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Camming-CammingUITests-Info.plist"; sourceTree = "<group>"; };
-		C0EEC002336BDF6980E7C72EC6383AF1 /* Pods-CammingTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CammingTests-Info.plist"; sourceTree = "<group>"; };
+		24C4BBE2462574259643B122C6AC7C0E /* Floaty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Floaty.debug.xcconfig; sourceTree = "<group>"; };
+		2915C263A5C5C8012A8C1E97512DC6A8 /* Floaty */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Floaty; path = Floaty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B5CAAF739985072A80A82A3EE23823E /* FloatyManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatyManager.swift; path = Sources/FloatyManager.swift; sourceTree = "<group>"; };
+		2BB39BD551BAD872B5CAEE373C9E8152 /* Floaty.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Floaty.swift; path = Sources/Floaty.swift; sourceTree = "<group>"; };
+		2C5587958D34A849C66C69491F7D89FE /* Pods-Camming.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Camming.release.xcconfig"; sourceTree = "<group>"; };
+		396DA44BABD07B19ECE4CEF5A0C1195D /* FloatyWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatyWindow.swift; path = Sources/FloatyWindow.swift; sourceTree = "<group>"; };
+		40F0353C4C61AC7C5B6EA7633E8263FE /* Pods-CammingTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CammingTests.modulemap"; sourceTree = "<group>"; };
+		463E2238A665C0D35F7CA06DEED84A06 /* Floaty-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Floaty-umbrella.h"; sourceTree = "<group>"; };
+		47BECF1ED7ADA4F1893317F01CE9B29C /* FloatyItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FloatyItem.swift; path = Sources/FloatyItem.swift; sourceTree = "<group>"; };
+		4D607614FA4509D4FF2467C6857A92E5 /* Pods-Camming.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Camming.debug.xcconfig"; sourceTree = "<group>"; };
+		52CE40A5D5BD6B8F88CD43A5AADA9279 /* Pods-Camming-CammingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Camming-CammingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5328E975A24519BD32ED538648F46BF8 /* SwiftLint.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.debug.xcconfig; sourceTree = "<group>"; };
+		64FF668492178E4782736AD4041BD840 /* Floaty-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Floaty-prefix.pch"; sourceTree = "<group>"; };
+		6550E1891716F763D93EFF91293E75CA /* Pods-Camming-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Camming-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6C3AFD204F0DF8E18CDEA92F0AD2045E /* Pods-Camming-CammingUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Camming-CammingUITests-dummy.m"; sourceTree = "<group>"; };
+		6DB5E73BFBA8BC63712799B572E73654 /* Pods-Camming-CammingUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Camming-CammingUITests-umbrella.h"; sourceTree = "<group>"; };
+		7267A8F1A4BE3F6C4DCD4BE8E5FE3864 /* Pods-CammingTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CammingTests-umbrella.h"; sourceTree = "<group>"; };
+		78234C8A9F4858E1E9688685E8BEE65C /* Pods-Camming-CammingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Camming-CammingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		80E4C88D276A81CC80C9F307056026B3 /* Pods-CammingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CammingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		842A1ED16522E804AAEB737062A701A5 /* Pods-Camming-CammingUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Camming-CammingUITests.modulemap"; sourceTree = "<group>"; };
+		91FC5F75FBB9E74F5B509DC03BC991B0 /* Pods-Camming-CammingUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Camming-CammingUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A200D4930A1E24ED4578ECF86CCCD562 /* Pods-CammingTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CammingTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		A21E4808929C1C13C139DAA80ADC90A1 /* UIView+Draggable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Draggable.swift"; path = "Sources/UIView+Draggable.swift"; sourceTree = "<group>"; };
+		A47D2D9F137B2FF810A1CF65BCE64BEF /* Pods-Camming-CammingUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Camming-CammingUITests-Info.plist"; sourceTree = "<group>"; };
+		AF0218FE2666FC78E7A6C037CE556FE9 /* Floaty-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Floaty-dummy.m"; sourceTree = "<group>"; };
+		B7DC496A543CB0F746D0710C1D440041 /* SwiftLint.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftLint.release.xcconfig; sourceTree = "<group>"; };
+		C16478BA15E35852FE58B52CF0EF978D /* Pods-Camming-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Camming-umbrella.h"; sourceTree = "<group>"; };
+		CB5086BFDA37817F4A687F0D265C4B21 /* Pods-CammingTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CammingTests-Info.plist"; sourceTree = "<group>"; };
 		CEA7FF4C95C92C7C8042065683C77716 /* Pods-CammingTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CammingTests"; path = Pods_CammingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D82363EEC530D74C793A145605AC3F74 /* Pods-Camming-CammingUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Camming-CammingUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D9B31B2A27E4249A5E9D7A605AB2E7EC /* Pods-Camming-CammingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Camming-CammingUITests.release.xcconfig"; sourceTree = "<group>"; };
-		DD5DBE45631DB531F8A5A8F790F1BB28 /* Pods-Camming-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Camming-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E6343A1FB26B10443F8AF61060BE8383 /* Pods-Camming-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Camming-umbrella.h"; sourceTree = "<group>"; };
-		E758051792B10ED939A2B6E68D095519 /* Pods-Camming-CammingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Camming-CammingUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		EB4B251BB2B94EC70F200A402D7ECE0D /* Pods-Camming-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Camming-dummy.m"; sourceTree = "<group>"; };
-		EE29BBEBF45F04C50B07CA0A07DEBA64 /* Pods-CammingTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CammingTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CF43D4B9F09FC9216E5D2DF80B33F6B5 /* Pods-Camming-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Camming-acknowledgements.plist"; sourceTree = "<group>"; };
+		D1B0027926C0367D8B98FE2756B6A11F /* Floaty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Floaty.release.xcconfig; sourceTree = "<group>"; };
+		D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		E31F711AA0879C373958A373320A76F9 /* Pods-CammingTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CammingTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		ED2647BA6B359DCC861668499DB730AD /* Pods-Camming-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Camming-frameworks.sh"; sourceTree = "<group>"; };
+		EEEE0321324D4356BF2228006785C9EA /* Pods-Camming-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Camming-Info.plist"; sourceTree = "<group>"; };
+		F2548BECBC76B0B5713077CC15866027 /* Pods-Camming-CammingUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Camming-CammingUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		F2B45EB9258B7E608F6B0918450CE1C5 /* Pods-Camming */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Camming"; path = Pods_Camming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF4FA10E822B39256081AB5EDB8A239E /* Floaty.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Floaty.modulemap; sourceTree = "<group>"; };
+		FFC97C3C74F2845B6BC4C1892793F156 /* Pods-Camming.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Camming.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		856F4B9AF5F3AD277410D40D2A9540D9 /* Frameworks */ = {
+		24EC8260386F8CE3B2F6DAC18554AB48 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB0D042075D515638E03611523986DBC /* Foundation.framework in Frameworks */,
+				97E1375FD2970D66091C801F998FC6D4 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D9D1E0119EA97615AF4A9F10A0C86526 /* Frameworks */ = {
+		64608A899105E73EF1EEAF763727B591 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12A7086809CB082D86213DB1A1561675 /* Foundation.framework in Frameworks */,
+				224183C41F3E7E35EE13E9CD3BB36938 /* Foundation.framework in Frameworks */,
+				72C98C8817A912FB7038531F576548C3 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		79DCE80B19505C761CBCED8335938872 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74E147263DFC8536D59E59806CEE6448 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,41 +168,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		055171CF5DD8A6AD80290AD97ED2BFFC /* Pods-CammingTests */ = {
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				05E8CD21DB2AEB35673DFFE96CDA4CDB /* Pods-CammingTests.modulemap */,
-				EE29BBEBF45F04C50B07CA0A07DEBA64 /* Pods-CammingTests-acknowledgements.markdown */,
-				058EEBF3C003081A1871009233A339C4 /* Pods-CammingTests-acknowledgements.plist */,
-				95C3850161C078487123B273079FEA43 /* Pods-CammingTests-dummy.m */,
-				C0EEC002336BDF6980E7C72EC6383AF1 /* Pods-CammingTests-Info.plist */,
-				137031323ADDF8E3C5385431B58B4AFA /* Pods-CammingTests-umbrella.h */,
-				6F17F7DE88ABFAECE25E5815D9376F06 /* Pods-CammingTests.debug.xcconfig */,
-				1035D30AB88D93165B1E4B8FA0772266 /* Pods-CammingTests.release.xcconfig */,
+				59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E7EA3687C615037D74CBC65439607CA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1ECD909A4EEAEF475EADC4EA3A9B37E4 /* Floaty */,
+				327D0C3BCFBFEE28D0A7B5B3C4233116 /* SwiftLint */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1ECD909A4EEAEF475EADC4EA3A9B37E4 /* Floaty */ = {
+			isa = PBXGroup;
+			children = (
+				2BB39BD551BAD872B5CAEE373C9E8152 /* Floaty.swift */,
+				1C4C95E32AE5D85F0B42BEA6E5CEA3F0 /* FloatyDelegate.swift */,
+				47BECF1ED7ADA4F1893317F01CE9B29C /* FloatyItem.swift */,
+				2B5CAAF739985072A80A82A3EE23823E /* FloatyManager.swift */,
+				1378F7032C947A518C1343537594F714 /* FloatyViewController.swift */,
+				396DA44BABD07B19ECE4CEF5A0C1195D /* FloatyWindow.swift */,
+				A21E4808929C1C13C139DAA80ADC90A1 /* UIView+Draggable.swift */,
+				8FBB9F692AD3D45803C7FB0C7F25CB38 /* Support Files */,
+			);
+			name = Floaty;
+			path = Floaty;
+			sourceTree = "<group>";
+		};
+		24F11DBB8896AD91F9A357BFD973D133 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3D366FF3B580AA674D223D265C4C60C3 /* Pods-Camming */,
+				DF55E9EFE45FFDFEDC6C831E73B4F57F /* Pods-Camming-CammingUITests */,
+				66618245897722563D3FE4B3C6915719 /* Pods-CammingTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		327D0C3BCFBFEE28D0A7B5B3C4233116 /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+				F7DFF891DE78B2FE54CBF6AADA345BDA /* Support Files */,
+			);
+			name = SwiftLint;
+			path = SwiftLint;
+			sourceTree = "<group>";
+		};
+		3D366FF3B580AA674D223D265C4C60C3 /* Pods-Camming */ = {
+			isa = PBXGroup;
+			children = (
+				FFC97C3C74F2845B6BC4C1892793F156 /* Pods-Camming.modulemap */,
+				6550E1891716F763D93EFF91293E75CA /* Pods-Camming-acknowledgements.markdown */,
+				CF43D4B9F09FC9216E5D2DF80B33F6B5 /* Pods-Camming-acknowledgements.plist */,
+				13FAA91FAAC1323798E31213E78D6880 /* Pods-Camming-dummy.m */,
+				ED2647BA6B359DCC861668499DB730AD /* Pods-Camming-frameworks.sh */,
+				EEEE0321324D4356BF2228006785C9EA /* Pods-Camming-Info.plist */,
+				C16478BA15E35852FE58B52CF0EF978D /* Pods-Camming-umbrella.h */,
+				4D607614FA4509D4FF2467C6857A92E5 /* Pods-Camming.debug.xcconfig */,
+				2C5587958D34A849C66C69491F7D89FE /* Pods-Camming.release.xcconfig */,
+			);
+			name = "Pods-Camming";
+			path = "Target Support Files/Pods-Camming";
+			sourceTree = "<group>";
+		};
+		59DA5C1F72E1D5BABC43EACBA672C3BA /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EAB6F611E86A4758835A715E4B4184F6 /* Foundation.framework */,
+				D245E0514AAC1A2B9A6D5EA2F383E90F /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		66618245897722563D3FE4B3C6915719 /* Pods-CammingTests */ = {
+			isa = PBXGroup;
+			children = (
+				40F0353C4C61AC7C5B6EA7633E8263FE /* Pods-CammingTests.modulemap */,
+				A200D4930A1E24ED4578ECF86CCCD562 /* Pods-CammingTests-acknowledgements.markdown */,
+				E31F711AA0879C373958A373320A76F9 /* Pods-CammingTests-acknowledgements.plist */,
+				0DEF3F2F3A2791790C56F7E6CAFB59CB /* Pods-CammingTests-dummy.m */,
+				CB5086BFDA37817F4A687F0D265C4B21 /* Pods-CammingTests-Info.plist */,
+				7267A8F1A4BE3F6C4DCD4BE8E5FE3864 /* Pods-CammingTests-umbrella.h */,
+				80E4C88D276A81CC80C9F307056026B3 /* Pods-CammingTests.debug.xcconfig */,
+				1AC409AAC28E7B86673BAEFE34392AA0 /* Pods-CammingTests.release.xcconfig */,
 			);
 			name = "Pods-CammingTests";
 			path = "Target Support Files/Pods-CammingTests";
 			sourceTree = "<group>";
 		};
-		3B391FCCEE8D2D6795836ACC4C2B42EB /* Pods-Camming-CammingUITests */ = {
+		882E3F25E07FDC56C0C608595BD6D25E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C4932C6F9F0AC0D2DD9923D9946DF23 /* Pods-Camming-CammingUITests.modulemap */,
-				D82363EEC530D74C793A145605AC3F74 /* Pods-Camming-CammingUITests-acknowledgements.markdown */,
-				99B6E67F967F35797FC08DD429011FFA /* Pods-Camming-CammingUITests-acknowledgements.plist */,
-				2BEBBEC9C7880FA7AE6C17B4F34B6E62 /* Pods-Camming-CammingUITests-dummy.m */,
-				A161A14C47C7D1B4451E8E9D0D1DD95E /* Pods-Camming-CammingUITests-Info.plist */,
-				65E624EBB214403083D9176D870B224A /* Pods-Camming-CammingUITests-umbrella.h */,
-				E758051792B10ED939A2B6E68D095519 /* Pods-Camming-CammingUITests.debug.xcconfig */,
-				D9B31B2A27E4249A5E9D7A605AB2E7EC /* Pods-Camming-CammingUITests.release.xcconfig */,
-			);
-			name = "Pods-Camming-CammingUITests";
-			path = "Target Support Files/Pods-Camming-CammingUITests";
-			sourceTree = "<group>";
-		};
-		410C51D329C1A3836F0ADA97322BDA6B /* Products */ = {
-			isa = PBXGroup;
-			children = (
+				2915C263A5C5C8012A8C1E97512DC6A8 /* Floaty */,
 				F2B45EB9258B7E608F6B0918450CE1C5 /* Pods-Camming */,
 				1E12643BF65B49D15080D606A3A19394 /* Pods-Camming-CammingUITests */,
 				CEA7FF4C95C92C7C8042065683C77716 /* Pods-CammingTests */,
@@ -159,88 +273,70 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+		8FBB9F692AD3D45803C7FB0C7F25CB38 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		5C8BCF6A414365FBE730628D651C5025 /* Pods-Camming */ = {
-			isa = PBXGroup;
-			children = (
-				2E9F1CDAB744BF69C00ACC739B5AE67E /* Pods-Camming.modulemap */,
-				DD5DBE45631DB531F8A5A8F790F1BB28 /* Pods-Camming-acknowledgements.markdown */,
-				9A9C1A3AEB7DEE1BE431DAFC2864CBE6 /* Pods-Camming-acknowledgements.plist */,
-				EB4B251BB2B94EC70F200A402D7ECE0D /* Pods-Camming-dummy.m */,
-				02DBE88EB4DEA50A36A6920D31007035 /* Pods-Camming-Info.plist */,
-				E6343A1FB26B10443F8AF61060BE8383 /* Pods-Camming-umbrella.h */,
-				9427A2B3E6649A8CED2AA6FAC37D8835 /* Pods-Camming.debug.xcconfig */,
-				6AE4971CC587290F50E23EF591E0DC41 /* Pods-Camming.release.xcconfig */,
-			);
-			name = "Pods-Camming";
-			path = "Target Support Files/Pods-Camming";
-			sourceTree = "<group>";
-		};
-		7FDA596DBE0337ACDFE55A210D54EF26 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */,
-				7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */,
+				FF4FA10E822B39256081AB5EDB8A239E /* Floaty.modulemap */,
+				AF0218FE2666FC78E7A6C037CE556FE9 /* Floaty-dummy.m */,
+				15A9DA56142977B9045B5E29B2E67717 /* Floaty-Info.plist */,
+				64FF668492178E4782736AD4041BD840 /* Floaty-prefix.pch */,
+				463E2238A665C0D35F7CA06DEED84A06 /* Floaty-umbrella.h */,
+				24C4BBE2462574259643B122C6AC7C0E /* Floaty.debug.xcconfig */,
+				D1B0027926C0367D8B98FE2756B6A11F /* Floaty.release.xcconfig */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/SwiftLint";
-			sourceTree = "<group>";
-		};
-		965877409E01FB3D85D85E90E6B30185 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D96179D43A67C5D5323B0682D32C133C /* SwiftLint */,
-			);
-			name = Pods;
+			path = "../Target Support Files/Floaty";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				965877409E01FB3D85D85E90E6B30185 /* Pods */,
-				410C51D329C1A3836F0ADA97322BDA6B /* Products */,
-				E0CBA7FE8E1D53DD96DFBB190CFBB722 /* Targets Support Files */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
+				1E7EA3687C615037D74CBC65439607CA /* Pods */,
+				882E3F25E07FDC56C0C608595BD6D25E /* Products */,
+				24F11DBB8896AD91F9A357BFD973D133 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+		DF55E9EFE45FFDFEDC6C831E73B4F57F /* Pods-Camming-CammingUITests */ = {
 			isa = PBXGroup;
 			children = (
-				578452D2E740E91742655AC8F1636D1F /* iOS */,
+				842A1ED16522E804AAEB737062A701A5 /* Pods-Camming-CammingUITests.modulemap */,
+				F2548BECBC76B0B5713077CC15866027 /* Pods-Camming-CammingUITests-acknowledgements.markdown */,
+				91FC5F75FBB9E74F5B509DC03BC991B0 /* Pods-Camming-CammingUITests-acknowledgements.plist */,
+				6C3AFD204F0DF8E18CDEA92F0AD2045E /* Pods-Camming-CammingUITests-dummy.m */,
+				0E95CB1E376B05DFA0D1B4920AE73452 /* Pods-Camming-CammingUITests-frameworks.sh */,
+				A47D2D9F137B2FF810A1CF65BCE64BEF /* Pods-Camming-CammingUITests-Info.plist */,
+				6DB5E73BFBA8BC63712799B572E73654 /* Pods-Camming-CammingUITests-umbrella.h */,
+				78234C8A9F4858E1E9688685E8BEE65C /* Pods-Camming-CammingUITests.debug.xcconfig */,
+				52CE40A5D5BD6B8F88CD43A5AADA9279 /* Pods-Camming-CammingUITests.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = "Pods-Camming-CammingUITests";
+			path = "Target Support Files/Pods-Camming-CammingUITests";
 			sourceTree = "<group>";
 		};
-		D96179D43A67C5D5323B0682D32C133C /* SwiftLint */ = {
+		F7DFF891DE78B2FE54CBF6AADA345BDA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				7FDA596DBE0337ACDFE55A210D54EF26 /* Support Files */,
+				5328E975A24519BD32ED538648F46BF8 /* SwiftLint.debug.xcconfig */,
+				B7DC496A543CB0F746D0710C1D440041 /* SwiftLint.release.xcconfig */,
 			);
-			path = SwiftLint;
-			sourceTree = "<group>";
-		};
-		E0CBA7FE8E1D53DD96DFBB190CFBB722 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				5C8BCF6A414365FBE730628D651C5025 /* Pods-Camming */,
-				3B391FCCEE8D2D6795836ACC4C2B42EB /* Pods-Camming-CammingUITests */,
-				055171CF5DD8A6AD80290AD97ED2BFFC /* Pods-CammingTests */,
-			);
-			name = "Targets Support Files";
+			name = "Support Files";
+			path = "../Target Support Files/SwiftLint";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		4DACEE964BCB469D9C56DB79587A0F92 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D74284E513235F05FF064B4E59532D9 /* Pods-Camming-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A13D888DF1EE0A1AD63DCB6891A59AC9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -249,19 +345,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BD1C4AA06D759CB12D4184EED6B241C9 /* Headers */ = {
+		C1DD1B768744C58FFE17BFA88323DBE2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B04649A304747E2A5EA313318465C002 /* Pods-Camming-umbrella.h in Headers */,
+				B3799B0B668CC34FB41863DC4F82046C /* Pods-Camming-CammingUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F67230A5F38B8843177955B82315F32F /* Headers */ = {
+		E043972B8466D13A31A8D0FFB02E9A72 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD1A845A30EEF2FBC0955CC7E6B136D7 /* Pods-Camming-CammingUITests-umbrella.h in Headers */,
+				197533DE6434BAC49762D75A4E774AB6 /* Floaty-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,26 +376,45 @@
 			buildRules = (
 			);
 			dependencies = (
-				D7EE9CEE9F7475C1F666129F04E5F882 /* PBXTargetDependency */,
+				5D26BACBCB5296E9FE7C1CCE36418BB9 /* PBXTargetDependency */,
 			);
 			name = "Pods-CammingTests";
 			productName = Pods_CammingTests;
 			productReference = CEA7FF4C95C92C7C8042065683C77716 /* Pods-CammingTests */;
 			productType = "com.apple.product-type.framework";
 		};
-		E98454C4C27A23A847B33942233948F9 /* Pods-Camming-CammingUITests */ = {
+		D2A775A88EA787684F2905BCB73F96D1 /* Floaty */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DD59127E4B7CD1CF1BB07D3B8E23DBA8 /* Build configuration list for PBXNativeTarget "Pods-Camming-CammingUITests" */;
+			buildConfigurationList = 5F170E0F31DA7943C8AFED9AD6E932E5 /* Build configuration list for PBXNativeTarget "Floaty" */;
 			buildPhases = (
-				F67230A5F38B8843177955B82315F32F /* Headers */,
-				DC19D029B04E3816AE44F727153A6C14 /* Sources */,
-				856F4B9AF5F3AD277410D40D2A9540D9 /* Frameworks */,
-				61466682CF072701D0AA43F813FDE8A2 /* Resources */,
+				E043972B8466D13A31A8D0FFB02E9A72 /* Headers */,
+				6EC1D33B87FB949672AED2B4515DB69D /* Sources */,
+				64608A899105E73EF1EEAF763727B591 /* Frameworks */,
+				C89E02018274D15C5FAD41C2E442555D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				667211AE234ECC65FEC69642BBBCF73C /* PBXTargetDependency */,
+			);
+			name = Floaty;
+			productName = Floaty;
+			productReference = 2915C263A5C5C8012A8C1E97512DC6A8 /* Floaty */;
+			productType = "com.apple.product-type.framework";
+		};
+		E98454C4C27A23A847B33942233948F9 /* Pods-Camming-CammingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B9E4D24CA8A448D6C988076803BD51F8 /* Build configuration list for PBXNativeTarget "Pods-Camming-CammingUITests" */;
+			buildPhases = (
+				C1DD1B768744C58FFE17BFA88323DBE2 /* Headers */,
+				ADB865E0C52095FE89807595C53054FD /* Sources */,
+				24EC8260386F8CE3B2F6DAC18554AB48 /* Frameworks */,
+				2F3D726E6B640184751070682762C06D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E3FB977B790F1785A19C760C2D1AF19C /* PBXTargetDependency */,
+				4A050625343BFE9756C50421ED109E21 /* PBXTargetDependency */,
 			);
 			name = "Pods-Camming-CammingUITests";
 			productName = Pods_Camming_CammingUITests;
@@ -308,17 +423,18 @@
 		};
 		EAC505145986018C6FF88971444F01F2 /* Pods-Camming */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C57EC83CA24145A6436F2ED089B3D547 /* Build configuration list for PBXNativeTarget "Pods-Camming" */;
+			buildConfigurationList = C463EC9D3FD4183D72722FBB970EDC5C /* Build configuration list for PBXNativeTarget "Pods-Camming" */;
 			buildPhases = (
-				BD1C4AA06D759CB12D4184EED6B241C9 /* Headers */,
-				B8E94F3F6BC4255BE05C68B34B0F997D /* Sources */,
-				D9D1E0119EA97615AF4A9F10A0C86526 /* Frameworks */,
-				8CB2FEA5EA2388DC97DDA3D61CFB4B81 /* Resources */,
+				4DACEE964BCB469D9C56DB79587A0F92 /* Headers */,
+				848603A92C1D880E63CA14AAF8924404 /* Sources */,
+				79DCE80B19505C761CBCED8335938872 /* Frameworks */,
+				AE1CFE100E5594CD80C09EE0F7D873E9 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1AC06A6587D5F5BD2ACE030CFF39B11D /* PBXTargetDependency */,
+				679292C60C36578F218A4CF3CFBBF446 /* PBXTargetDependency */,
+				4D62E5CDB557AEA732ED36CFFEF86D38 /* PBXTargetDependency */,
 			);
 			name = "Pods-Camming";
 			productName = Pods_Camming;
@@ -332,7 +448,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -343,10 +459,11 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 410C51D329C1A3836F0ADA97322BDA6B /* Products */;
+			productRefGroup = 882E3F25E07FDC56C0C608595BD6D25E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				D2A775A88EA787684F2905BCB73F96D1 /* Floaty */,
 				EAC505145986018C6FF88971444F01F2 /* Pods-Camming */,
 				E98454C4C27A23A847B33942233948F9 /* Pods-Camming-CammingUITests */,
 				0ACCEA83B007972D0B3B83035E5B3F8A /* Pods-CammingTests */,
@@ -356,14 +473,21 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		61466682CF072701D0AA43F813FDE8A2 /* Resources */ = {
+		2F3D726E6B640184751070682762C06D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8CB2FEA5EA2388DC97DDA3D61CFB4B81 /* Resources */ = {
+		AE1CFE100E5594CD80C09EE0F7D873E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C89E02018274D15C5FAD41C2E442555D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -380,6 +504,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6EC1D33B87FB949672AED2B4515DB69D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3214C9C78BB1008BBE89C1F11A42B77 /* Floaty.swift in Sources */,
+				E7E9CAB3F831619EA98022C3ACBB0E8F /* Floaty-dummy.m in Sources */,
+				8091A6D5D32B94B079733D9D09EAE747 /* FloatyDelegate.swift in Sources */,
+				013A0B965FB7F20BD0F87E8871221253 /* FloatyItem.swift in Sources */,
+				CA7F3C2E65B19F2F4BCBFF5567024BAF /* FloatyManager.swift in Sources */,
+				36EDF538E419A9721571437C7F1CA6DD /* FloatyViewController.swift in Sources */,
+				D9FB3A64C227528D834DF04B1D14583C /* FloatyWindow.swift in Sources */,
+				E660E9ACA165C6A86576E1DFE587AA53 /* UIView+Draggable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F864BF978E092B8CF97992DD30B498F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,42 +527,54 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8E94F3F6BC4255BE05C68B34B0F997D /* Sources */ = {
+		848603A92C1D880E63CA14AAF8924404 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E68225B2BF188BBF45BD3C4226F8C114 /* Pods-Camming-dummy.m in Sources */,
+				6E5EC2A0F05784559606F54D6754A2F6 /* Pods-Camming-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DC19D029B04E3816AE44F727153A6C14 /* Sources */ = {
+		ADB865E0C52095FE89807595C53054FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83A52A7C0392EDAAFE8DE844F4D17B2F /* Pods-Camming-CammingUITests-dummy.m in Sources */,
+				D3D84AC667CDBB37D3DD6B94AA8F60D9 /* Pods-Camming-CammingUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1AC06A6587D5F5BD2ACE030CFF39B11D /* PBXTargetDependency */ = {
+		4A050625343BFE9756C50421ED109E21 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftLint;
 			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
-			targetProxy = C1948E661573E02C7A0B1F55DD91EDFE /* PBXContainerItemProxy */;
+			targetProxy = 1897103FE433DC564E53383DA0ED76A1 /* PBXContainerItemProxy */;
 		};
-		667211AE234ECC65FEC69642BBBCF73C /* PBXTargetDependency */ = {
+		4D62E5CDB557AEA732ED36CFFEF86D38 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftLint;
 			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
-			targetProxy = C6E989E7DB220B5717331790E02C92EA /* PBXContainerItemProxy */;
+			targetProxy = FA4BEA5F6F43A53119BF6CF906227871 /* PBXContainerItemProxy */;
 		};
-		D7EE9CEE9F7475C1F666129F04E5F882 /* PBXTargetDependency */ = {
+		5D26BACBCB5296E9FE7C1CCE36418BB9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-Camming";
 			target = EAC505145986018C6FF88971444F01F2 /* Pods-Camming */;
-			targetProxy = 8BB1418F5D980F849F53E52D20552977 /* PBXContainerItemProxy */;
+			targetProxy = 86B0237FBF0FA0E5755E47864E2A1135 /* PBXContainerItemProxy */;
+		};
+		679292C60C36578F218A4CF3CFBBF446 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Floaty;
+			target = D2A775A88EA787684F2905BCB73F96D1 /* Floaty */;
+			targetProxy = 0F4F847604D5ABFD2C0EE16F6B811675 /* PBXContainerItemProxy */;
+		};
+		E3FB977B790F1785A19C760C2D1AF19C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Floaty;
+			target = D2A775A88EA787684F2905BCB73F96D1 /* Floaty */;
+			targetProxy = 7D04C9A3A6B43EFC8C709A7AABAFFF2D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -494,44 +645,6 @@
 			};
 			name = Debug;
 		};
-		2B5C33E278A9C008A88261C9A94DCC4F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AE4971CC587290F50E23EF591E0DC41 /* Pods-Camming.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Camming/Pods-Camming-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Camming/Pods-Camming.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		2DE0D8898245310716431F92FA4989FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -594,9 +707,9 @@
 			};
 			name = Release;
 		};
-		61D9D8268E8BF4000F0CEDDEBCF6FF1D /* Debug */ = {
+		6FD5558BE5086AC4A7F4028E52FD3636 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E758051792B10ED939A2B6E68D095519 /* Pods-Camming-CammingUITests.debug.xcconfig */;
+			baseConfigurationReference = 78234C8A9F4858E1E9688685E8BEE65C /* Pods-Camming-CammingUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -633,7 +746,7 @@
 		};
 		8CF36BB8AFD603D59C1B0D43EAE9E1E5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1035D30AB88D93165B1E4B8FA0772266 /* Pods-CammingTests.release.xcconfig */;
+			baseConfigurationReference = 1AC409AAC28E7B86673BAEFE34392AA0 /* Pods-CammingTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -671,11 +784,11 @@
 		};
 		AD81E62ACCB0B7A923FC8AA288F9921E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */;
+			baseConfigurationReference = B7DC496A543CB0F746D0710C1D440041 /* SwiftLint.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -688,7 +801,7 @@
 		};
 		C0AC3D1F31A5AA4424D21FAF05C42DAE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F17F7DE88ABFAECE25E5815D9376F06 /* Pods-CammingTests.debug.xcconfig */;
+			baseConfigurationReference = 80E4C88D276A81CC80C9F307056026B3 /* Pods-CammingTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -723,9 +836,9 @@
 			};
 			name = Debug;
 		};
-		D23ECE9BDE3C22FC74A6DCB6689453BD /* Debug */ = {
+		D29E8BF2F108AB47F51606A267E9A732 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9427A2B3E6649A8CED2AA6FAC37D8835 /* Pods-Camming.debug.xcconfig */;
+			baseConfigurationReference = 4D607614FA4509D4FF2467C6857A92E5 /* Pods-Camming.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -760,25 +873,9 @@
 			};
 			name = Debug;
 		};
-		EADD1F50ABC8096A0D6CB18822BB4EE4 /* Debug */ = {
+		D616BEA67ACF890A7EDC82D7CE71ED5D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		FDACACCB203EC2EAC5162D1FBC6FFC95 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9B31B2A27E4249A5E9D7A605AB2E7EC /* Pods-Camming-CammingUITests.release.xcconfig */;
+			baseConfigurationReference = 52CE40A5D5BD6B8F88CD43A5AADA9279 /* Pods-Camming-CammingUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -814,6 +911,131 @@
 			};
 			name = Release;
 		};
+		E0DCFB12F7010F67BD6502C177FE21F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C5587958D34A849C66C69491F7D89FE /* Pods-Camming.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Camming/Pods-Camming-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Camming/Pods-Camming.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E49416477E9FC5E1FB426F6C36F20871 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24C4BBE2462574259643B122C6AC7C0E /* Floaty.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Floaty/Floaty-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Floaty/Floaty-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Floaty/Floaty.modulemap";
+				PRODUCT_MODULE_NAME = Floaty;
+				PRODUCT_NAME = Floaty;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EADD1F50ABC8096A0D6CB18822BB4EE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5328E975A24519BD32ED538648F46BF8 /* SwiftLint.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0BFC825DFA7880BB6E0C8E3F67338F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1B0027926C0367D8B98FE2756B6A11F /* Floaty.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Floaty/Floaty-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Floaty/Floaty-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Floaty/Floaty.modulemap";
+				PRODUCT_MODULE_NAME = Floaty;
+				PRODUCT_NAME = Floaty;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -822,6 +1044,15 @@
 			buildConfigurations = (
 				09909ECBA13E8F70A928465E7F7A9A92 /* Debug */,
 				2DE0D8898245310716431F92FA4989FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F170E0F31DA7943C8AFED9AD6E932E5 /* Build configuration list for PBXNativeTarget "Floaty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E49416477E9FC5E1FB426F6C36F20871 /* Debug */,
+				F0BFC825DFA7880BB6E0C8E3F67338F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -844,20 +1075,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C57EC83CA24145A6436F2ED089B3D547 /* Build configuration list for PBXNativeTarget "Pods-Camming" */ = {
+		B9E4D24CA8A448D6C988076803BD51F8 /* Build configuration list for PBXNativeTarget "Pods-Camming-CammingUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D23ECE9BDE3C22FC74A6DCB6689453BD /* Debug */,
-				2B5C33E278A9C008A88261C9A94DCC4F /* Release */,
+				6FD5558BE5086AC4A7F4028E52FD3636 /* Debug */,
+				D616BEA67ACF890A7EDC82D7CE71ED5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DD59127E4B7CD1CF1BB07D3B8E23DBA8 /* Build configuration list for PBXNativeTarget "Pods-Camming-CammingUITests" */ = {
+		C463EC9D3FD4183D72722FBB970EDC5C /* Build configuration list for PBXNativeTarget "Pods-Camming" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				61D9D8268E8BF4000F0CEDDEBCF6FF1D /* Debug */,
-				FDACACCB203EC2EAC5162D1FBC6FFC95 /* Release */,
+				D29E8BF2F108AB47F51606A267E9A732 /* Debug */,
+				E0DCFB12F7010F67BD6502C177FE21F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

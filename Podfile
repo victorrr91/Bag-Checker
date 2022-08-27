@@ -7,6 +7,7 @@ target 'Camming' do
 
   # Pods for Camming
     pod 'SwiftLint'
+    pod 'Floaty', '~> 4.2.0'
 
   target 'CammingTests' do
     inherit! :search_paths

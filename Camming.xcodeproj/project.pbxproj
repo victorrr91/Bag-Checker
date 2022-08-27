@@ -20,6 +20,10 @@
 		B1051D1528B10941006205BB /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1428B10941006205BB /* TabBarItem.swift */; };
 		B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1628B10C14006205BB /* ChecklistViewController.swift */; };
 		B145F29F28B91E0800954B6A /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = B145F29E28B91E0800954B6A /* SwipeCellKit */; };
+		B145F2A128B967C000954B6A /* SelectBagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A028B967C000954B6A /* SelectBagsViewController.swift */; };
+		B145F2A328B96B8800954B6A /* SelectBagsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A228B96B8800954B6A /* SelectBagsViewCell.swift */; };
+		B145F2A528B9CD5900954B6A /* CategorySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A428B9CD5900954B6A /* CategorySettingViewController.swift */; };
+		B145F2A728B9CFBA00954B6A /* CategorySettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */; };
 		B14B039628B1FF2C008C4132 /* ChecklistViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */; };
 		B1565DB428B31613001D4A9D /* ChecklistHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */; };
 		B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB628B35D71001D4A9D /* Checklist.swift */; };
@@ -68,6 +72,10 @@
 		B1051D0228B1059C006205BB /* CammingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CammingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B1051D1428B10941006205BB /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		B1051D1628B10C14006205BB /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
+		B145F2A028B967C000954B6A /* SelectBagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBagsViewController.swift; sourceTree = "<group>"; };
+		B145F2A228B96B8800954B6A /* SelectBagsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBagsViewCell.swift; sourceTree = "<group>"; };
+		B145F2A428B9CD5900954B6A /* CategorySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySettingViewController.swift; sourceTree = "<group>"; };
+		B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySettingViewCell.swift; sourceTree = "<group>"; };
 		B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewCell.swift; sourceTree = "<group>"; };
 		B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistHeaderView.swift; sourceTree = "<group>"; };
 		B1565DB628B35D71001D4A9D /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
@@ -199,6 +207,10 @@
 				B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */,
 				B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */,
 				B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */,
+				B145F2A428B9CD5900954B6A /* CategorySettingViewController.swift */,
+				B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */,
+				B145F2A028B967C000954B6A /* SelectBagsViewController.swift */,
+				B145F2A228B96B8800954B6A /* SelectBagsViewCell.swift */,
 			);
 			path = Checklist;
 			sourceTree = "<group>";
@@ -241,6 +253,7 @@
 				B1051CD928B1059A006205BB /* Frameworks */,
 				B1051CDA28B1059A006205BB /* Resources */,
 				B1051D0F28B1069F006205BB /* Swiftlint */,
+				672C226613F8360DA7708DB9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -282,6 +295,7 @@
 				B1051CF828B1059C006205BB /* Sources */,
 				B1051CF928B1059C006205BB /* Frameworks */,
 				B1051CFA28B1059C006205BB /* Resources */,
+				C2BEBD2A28AAD26380207DD7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -411,6 +425,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		672C226613F8360DA7708DB9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Camming/Pods-Camming-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Camming/Pods-Camming-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Camming/Pods-Camming-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B1051D0F28B1069F006205BB /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,6 +459,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		C2BEBD2A28AAD26380207DD7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Camming-CammingUITests/Pods-Camming-CammingUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Camming-CammingUITests/Pods-Camming-CammingUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Camming-CammingUITests/Pods-Camming-CammingUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		FE8E9289E3F00C14713E1FEC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -461,9 +509,13 @@
 				B1565DBA28B365B5001D4A9D /* ChecklistHeaderViewCell.swift in Sources */,
 				B1051CE428B1059A006205BB /* TabBarController.swift in Sources */,
 				B1565DBC28B3B3D1001D4A9D /* UserDefaults+.swift in Sources */,
+				B145F2A328B96B8800954B6A /* SelectBagsViewCell.swift in Sources */,
 				B1051CE028B1059A006205BB /* AppDelegate.swift in Sources */,
+				B145F2A128B967C000954B6A /* SelectBagsViewController.swift in Sources */,
 				B1051D1528B10941006205BB /* TabBarItem.swift in Sources */,
+				B145F2A728B9CFBA00954B6A /* CategorySettingViewCell.swift in Sources */,
 				B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */,
+				B145F2A528B9CD5900954B6A /* CategorySettingViewController.swift in Sources */,
 				B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */,
 				B1565DB428B31613001D4A9D /* ChecklistHeaderView.swift in Sources */,
 				B14B039628B1FF2C008C4132 /* ChecklistViewCell.swift in Sources */,

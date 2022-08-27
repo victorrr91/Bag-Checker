@@ -11,6 +11,7 @@ extension UserDefaults {
     enum Key: String {
         case categories
         case checklists
+        case bags
     }
 
     var categories: [String] {
@@ -46,6 +47,36 @@ extension UserDefaults {
         UserDefaults.standard.setValue(
             try? PropertyListEncoder().encode(newValue),
             forKey: currentCategory
+        )
+    }
+
+    var bags: [String] {
+        get {
+            guard let data = UserDefaults.standard.data(forKey: Key.bags.rawValue) else { return [] }
+
+            return ( try? PropertyListDecoder().decode([String].self, from: data) ) ?? []
+        }
+
+        set {
+            UserDefaults.standard.setValue(
+                try? PropertyListEncoder().encode(newValue),
+                forKey: Key.bags.rawValue
+            )
+        }
+    }
+
+    func getChecklistsInBag(_ bag: String) -> [Checklist] {
+        guard let data = UserDefaults.standard.data(forKey: bag) else { return [] }
+
+        return (try? PropertyListDecoder().decode([Checklist].self, from: data)) ?? []
+    }
+
+    func setChecklistsInBag(_ newValue: Checklist, _ bag: String) {
+        let checklists = getChecklistsInBag(bag) + [newValue]
+
+        UserDefaults.standard.setValue(
+            try? PropertyListEncoder().encode(checklists),
+            forKey: bag
         )
     }
 }

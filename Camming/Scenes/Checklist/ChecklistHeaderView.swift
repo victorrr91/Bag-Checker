@@ -32,9 +32,9 @@ final class ChecklistHeaderView: UICollectionReusableView {
         return collectionView
     }()
 
-    lazy var addButton: UIButton = {
+    lazy var settingButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
 
         return button
     }()
@@ -44,14 +44,14 @@ final class ChecklistHeaderView: UICollectionReusableView {
         self.delegate = delegate
 
         addSubview(collectionView)
-        addSubview(addButton)
+        addSubview(settingButton)
 
         collectionView.snp.makeConstraints {
             $0.leading.top.bottom.equalToSuperview()
-            $0.trailing.equalTo(addButton.snp.leading).inset(8.0)
+            $0.trailing.equalTo(settingButton.snp.leading).inset(8.0)
         }
 
-        addButton.snp.makeConstraints {
+        settingButton.snp.makeConstraints {
             $0.trailing.equalToSuperview()
             $0.width.height.equalTo(40.0)
             $0.centerY.equalToSuperview()
