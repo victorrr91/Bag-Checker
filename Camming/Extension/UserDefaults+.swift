@@ -77,19 +77,4 @@ extension UserDefaults {
             forKey: bag
         )
     }
-
-//    func getChecklistsInBag(_ bag: String) -> [Checklist] {
-//        guard let data = UserDefaults.standard.data(forKey: bag) else { return [] }
-//
-//        return (try? PropertyListDecoder().decode([Checklist].self, from: data)) ?? []
-//    }
-//
-//    func setChecklistsInBag(_ newValue: Checklist, _ bag: String) {
-//        let checklists = getChecklistsInBag(bag) + [newValue]
-//
-//        UserDefaults.standard.setValue(
-//            try? PropertyListEncoder().encode(checklists),
-//            forKey: bag
-//        )
-//    }
 }

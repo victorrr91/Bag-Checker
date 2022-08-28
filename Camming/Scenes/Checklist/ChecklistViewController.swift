@@ -104,6 +104,7 @@ extension ChecklistViewController: SelectBagsViewControllerDelegate {
         checklists[selectIdx!] = modifiedChecklist
 
         UserDefaults.standard.setChecklists(checklists, currentCategory)
+        collectionView.reloadData()
     }
 }
 
@@ -238,8 +239,36 @@ extension ChecklistViewController: SwipeCollectionViewCellDelegate {
 }
 
 extension ChecklistViewController: ChecklistViewCellDelegate {
-    func checklistStateChanged(state: CheckState, index: Int) {
-        checklists[index].state = state
+    func checklistStateChanged(state: CheckState, stateButton: UIButton, packButton: UIButton) {
+
+        if state == .ready {
+            let alertController = UIAlertController(
+                title: "경고",
+                message: "정말 가방에서 꺼내시나요?",
+                preferredStyle: .alert
+            )
+
+            let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                self?.checklists[stateButton.tag].bag = nil
+                self?.checklists[stateButton.tag].state = .toBuy
+                UserDefaults.standard.setChecklists(
+                    self?.checklists ?? [],
+                    self?.currentCategory ?? ""
+                )
+                stateButton.setTitle(CheckState.toBuy.rawValue, for: .normal)
+                stateButton.backgroundColor = CheckState.toBuy.color
+                packButton.isHidden = true
+                }
+
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+
+            alertController.addAction(confirm)
+            alertController.addAction(cancel)
+
+            present(alertController, animated: true)
+        } else {
+            checklists[stateButton.tag].state = state
+        }
     }
 }
 

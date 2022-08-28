@@ -16,12 +16,14 @@ struct Checklist: Codable {
 
 enum CheckState: String, Codable {
     case toBuy
+    case toPack
     case ready
 
     var color: UIColor {
         switch self {
-        case .toBuy: return UIColor.red
-        case .ready: return UIColor.init(red: 4/255, green: 163/255, blue: 103/255, alpha: 0.6)
+        case .toBuy: return .red
+        case .toPack: return .orange
+        case .ready: return .init(red: 4/255, green: 163/255, blue: 103/255, alpha: 0.6)
         }
     }
 }

@@ -58,6 +58,7 @@ final class SelectBagsViewController: UIViewController {
         guard let selectIndex = beforeSelect?.bagButton.tag else { return }
         let bag = bags[selectIndex]
         checklist.bag = bag
+        checklist.state = .ready
 
         delegate?.selectBag(modifiedChecklist: checklist)
         dismiss(animated: true)

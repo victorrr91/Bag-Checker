@@ -10,7 +10,7 @@ import UIKit
 import SwipeCellKit
 
 protocol ChecklistViewCellDelegate: AnyObject {
-    func checklistStateChanged(state: CheckState, index: Int)
+    func checklistStateChanged(state: CheckState, stateButton: UIButton, packButton: UIButton)
 }
 
 final class ChecklistViewCell: SwipeCollectionViewCell {
@@ -60,23 +60,29 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
     }()
 
     @objc func didTapStateButton() {
-        switch stateButton.titleLabel?.text {
-        case CheckState.toBuy.rawValue:
-            stateButton.setTitle(CheckState.ready.rawValue, for: .normal)
-            stateDelegate?.checklistStateChanged(state: CheckState.ready, index: stateButton.tag)
-            stateButton.backgroundColor = CheckState.ready.color
 
-            packButton.isHidden = false
+        switch stateButton.titleLabel?.text {
+
+        case CheckState.toBuy.rawValue:
+            changeStateButtonConfig(to: .toPack, hidden: false)
+
+        case CheckState.toPack.rawValue:
+            changeStateButtonConfig(to: .toBuy, hidden: true)
 
         case CheckState.ready.rawValue:
-            stateButton.setTitle(CheckState.toBuy.rawValue, for: .normal)
-            stateDelegate?.checklistStateChanged(state: CheckState.toBuy, index: stateButton.tag)
-            stateButton.backgroundColor = CheckState.toBuy.color
-            packButton.isHidden = true
+            stateDelegate?.checklistStateChanged(state: .ready, stateButton: stateButton, packButton: packButton)
 
         default:
             return
         }
+    }
+
+    func changeStateButtonConfig(to state: CheckState, hidden: Bool) {
+        stateButton.setTitle(state.rawValue, for: .normal)
+        stateDelegate?.checklistStateChanged(state: state, stateButton: stateButton, packButton: packButton)
+        stateButton.backgroundColor = state.color
+
+        packButton.isHidden = hidden
     }
 
     func setup(checklist: Checklist, delegate: ChecklistViewCellDelegate?) {
@@ -87,7 +93,8 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
         nameLabel.text = checklist.name
         stateButton.setTitle(checklist.state.rawValue, for: .normal)
         stateButton.backgroundColor = checklist.state.color
-        if stateButton.titleLabel?.text == CheckState.toBuy.rawValue {
+        if stateButton.titleLabel?.text == CheckState.toBuy.rawValue ||
+            stateButton.titleLabel?.text == CheckState.ready.rawValue {
             packButton.isHidden = true
         } else {
             packButton.isHidden = false
