@@ -29,10 +29,6 @@ extension UserDefaults {
         }
     }
 
-    func addCategory(name: String) {
-        UserDefaults.standard.set([], forKey: name)
-    }
-
     func deleteCategory(name: String) {
         UserDefaults.standard.removeObject(forKey: name)
     }
@@ -65,18 +61,35 @@ extension UserDefaults {
         }
     }
 
+    func deleteBag(bag: String) {
+        UserDefaults.standard.removeObject(forKey: bag)
+    }
+
     func getChecklistsInBag(_ bag: String) -> [Checklist] {
         guard let data = UserDefaults.standard.data(forKey: bag) else { return [] }
 
         return (try? PropertyListDecoder().decode([Checklist].self, from: data)) ?? []
     }
 
-    func setChecklistsInBag(_ newValue: Checklist, _ bag: String) {
-        let checklists = getChecklistsInBag(bag) + [newValue]
-
+    func setChecklistsInBag(_ newValue: [Checklist], _ bag: String) {
         UserDefaults.standard.setValue(
-            try? PropertyListEncoder().encode(checklists),
+            try? PropertyListEncoder().encode(newValue),
             forKey: bag
         )
     }
+
+//    func getChecklistsInBag(_ bag: String) -> [Checklist] {
+//        guard let data = UserDefaults.standard.data(forKey: bag) else { return [] }
+//
+//        return (try? PropertyListDecoder().decode([Checklist].self, from: data)) ?? []
+//    }
+//
+//    func setChecklistsInBag(_ newValue: Checklist, _ bag: String) {
+//        let checklists = getChecklistsInBag(bag) + [newValue]
+//
+//        UserDefaults.standard.setValue(
+//            try? PropertyListEncoder().encode(checklists),
+//            forKey: bag
+//        )
+//    }
 }

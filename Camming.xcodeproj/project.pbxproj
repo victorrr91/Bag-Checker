@@ -25,6 +25,7 @@
 		B145F2A528B9CD5900954B6A /* CategorySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A428B9CD5900954B6A /* CategorySettingViewController.swift */; };
 		B145F2A728B9CFBA00954B6A /* CategorySettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */; };
 		B14B039628B1FF2C008C4132 /* ChecklistViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */; };
+		B14B487928BB5B2A001FC561 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B487828BB5B2A001FC561 /* UIButton+.swift */; };
 		B1565DB428B31613001D4A9D /* ChecklistHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */; };
 		B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB628B35D71001D4A9D /* Checklist.swift */; };
 		B1565DBA28B365B5001D4A9D /* ChecklistHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */; };
@@ -77,6 +78,7 @@
 		B145F2A428B9CD5900954B6A /* CategorySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySettingViewController.swift; sourceTree = "<group>"; };
 		B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySettingViewCell.swift; sourceTree = "<group>"; };
 		B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewCell.swift; sourceTree = "<group>"; };
+		B14B487828BB5B2A001FC561 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistHeaderView.swift; sourceTree = "<group>"; };
 		B1565DB628B35D71001D4A9D /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistHeaderViewCell.swift; sourceTree = "<group>"; };
@@ -200,6 +202,24 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		B145F2A828B9F91500954B6A /* CategorySetting */ = {
+			isa = PBXGroup;
+			children = (
+				B145F2A428B9CD5900954B6A /* CategorySettingViewController.swift */,
+				B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */,
+			);
+			path = CategorySetting;
+			sourceTree = "<group>";
+		};
+		B145F2A928B9F92200954B6A /* Bags */ = {
+			isa = PBXGroup;
+			children = (
+				B145F2A028B967C000954B6A /* SelectBagsViewController.swift */,
+				B145F2A228B96B8800954B6A /* SelectBagsViewCell.swift */,
+			);
+			path = Bags;
+			sourceTree = "<group>";
+		};
 		B1565DB528B318BE001D4A9D /* Checklist */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,10 +227,8 @@
 				B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */,
 				B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */,
 				B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */,
-				B145F2A428B9CD5900954B6A /* CategorySettingViewController.swift */,
-				B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */,
-				B145F2A028B967C000954B6A /* SelectBagsViewController.swift */,
-				B145F2A228B96B8800954B6A /* SelectBagsViewCell.swift */,
+				B145F2A828B9F91500954B6A /* CategorySetting */,
+				B145F2A928B9F92200954B6A /* Bags */,
 			);
 			path = Checklist;
 			sourceTree = "<group>";
@@ -227,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				B1565DBB28B3B3D1001D4A9D /* UserDefaults+.swift */,
+				B14B487828BB5B2A001FC561 /* UIButton+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -510,6 +529,7 @@
 				B1051CE428B1059A006205BB /* TabBarController.swift in Sources */,
 				B1565DBC28B3B3D1001D4A9D /* UserDefaults+.swift in Sources */,
 				B145F2A328B96B8800954B6A /* SelectBagsViewCell.swift in Sources */,
+				B14B487928BB5B2A001FC561 /* UIButton+.swift in Sources */,
 				B1051CE028B1059A006205BB /* AppDelegate.swift in Sources */,
 				B145F2A128B967C000954B6A /* SelectBagsViewController.swift in Sources */,
 				B1051D1528B10941006205BB /* TabBarItem.swift in Sources */,
@@ -690,6 +710,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N4G34Z5GTF;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Camming/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -718,6 +739,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N4G34Z5GTF;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Camming/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

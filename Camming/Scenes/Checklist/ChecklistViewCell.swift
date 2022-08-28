@@ -49,14 +49,8 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
         button.setImage(UIImage(systemName: "suitcase.fill"), for: .normal)
         button.tintColor = .init(red: 252/255, green: 108/255, blue: 109/255, alpha: 0.9)
 
-//        button.addTarget(self, action: #selector(didTapPackButton), for: .touchUpInside)
-
         return button
     }()
-
-//    @objc func didTapPackButton() {
-//
-//    }
 
     private lazy var separator: UIView = {
         let view = UIView()
@@ -68,16 +62,12 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
     @objc func didTapStateButton() {
         switch stateButton.titleLabel?.text {
         case CheckState.toBuy.rawValue:
-            stateButton.setTitle(CheckState.toPack.rawValue, for: .normal)
-            stateDelegate?.checklistStateChanged(state: CheckState.toPack, index: stateButton.tag)
-            stateButton.backgroundColor = CheckState.toPack.color
-
-        case CheckState.toPack.rawValue:
             stateButton.setTitle(CheckState.ready.rawValue, for: .normal)
             stateDelegate?.checklistStateChanged(state: CheckState.ready, index: stateButton.tag)
             stateButton.backgroundColor = CheckState.ready.color
 
             packButton.isHidden = false
+
         case CheckState.ready.rawValue:
             stateButton.setTitle(CheckState.toBuy.rawValue, for: .normal)
             stateDelegate?.checklistStateChanged(state: CheckState.toBuy, index: stateButton.tag)
@@ -97,8 +87,7 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
         nameLabel.text = checklist.name
         stateButton.setTitle(checklist.state.rawValue, for: .normal)
         stateButton.backgroundColor = checklist.state.color
-        if stateButton.titleLabel?.text == CheckState.toBuy.rawValue ||
-            stateButton.titleLabel?.text == CheckState.toPack.rawValue {
+        if stateButton.titleLabel?.text == CheckState.toBuy.rawValue {
             packButton.isHidden = true
         } else {
             packButton.isHidden = false

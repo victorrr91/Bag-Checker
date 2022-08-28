@@ -16,6 +16,8 @@ final class ChecklistViewController: UIViewController {
     private var categories: [String] = []
     private var checklists: [Checklist] = []
 
+    private var selectIdx: Int?
+
     private var longPressGesture: UILongPressGestureRecognizer!
 
     private lazy var collectionView: UICollectionView = {
@@ -67,7 +69,7 @@ final class ChecklistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        currentCategory = UserDefaults.standard.categories.first ?? ""
+        self.currentCategory = UserDefaults.standard.categories.first ?? ""
 
         configure()
         setupLayout()
@@ -76,8 +78,9 @@ final class ChecklistViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        categories = UserDefaults.standard.categories
-        checklists = UserDefaults.standard.getChecklists(currentCategory)
+        self.categories = UserDefaults.standard.categories
+        self.checklists = UserDefaults.standard.getChecklists(currentCategory)
+        collectionView.reloadSections(IndexSet(integer: 0))
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,8 +90,9 @@ final class ChecklistViewController: UIViewController {
     }
 
     @objc func didTapPackButton(_ sender: UIButton) {
-        let checklist = checklists[sender.tag]
-        let selectBagViewController = SelectBagsViewController(delegate: self)
+        selectIdx = sender.tag
+        let checklist = checklists[selectIdx!]
+        let selectBagViewController = SelectBagsViewController(delegate: self, checklist: checklist)
         selectBagViewController.modalPresentationStyle = .popover
 
         present(selectBagViewController, animated: true)
@@ -96,8 +100,10 @@ final class ChecklistViewController: UIViewController {
 }
 
 extension ChecklistViewController: SelectBagsViewControllerDelegate {
-    func selectBag() {
-        
+    func selectBag(modifiedChecklist: Checklist) {
+        checklists[selectIdx!] = modifiedChecklist
+
+        UserDefaults.standard.setChecklists(checklists, currentCategory)
     }
 }
 
@@ -247,9 +253,16 @@ extension ChecklistViewController: ChecklistHeaderViewCellDelegate {
 }
 
 extension ChecklistViewController: CategorySettingViewControllerDelegate {
-    func tappedConfirmButton() {
-        categories = UserDefaults.standard.categories
-        collectionView.reloadSections(IndexSet(integer: 0))
+    func tappedConfirmButton(categories: [String]) {
+        self.categories = categories
+        self.currentCategory = categories.first ?? ""
+        self.checklists = UserDefaults.standard.getChecklists(currentCategory)
+
+        if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.invalidateLayout()
+        }
+
+        UserDefaults.standard.categories = categories
     }
 }
 

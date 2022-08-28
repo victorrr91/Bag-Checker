@@ -10,13 +10,15 @@ import UIKit
 import SnapKit
 
 protocol CategorySettingViewControllerDelegate: AnyObject {
-    func tappedConfirmButton()
+    func tappedConfirmButton(categories: [String])
 }
 
 final class CategorySettingViewController: UIViewController {
     private var categories: [String]
 
     private weak var delegate: CategorySettingViewControllerDelegate?
+
+    private var deleteCategories: [String] = []
 
     private lazy var tabelView: UITableView = {
         let tableView = UITableView()
@@ -74,7 +76,7 @@ final class CategorySettingViewController: UIViewController {
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
 
-        button.setTitle("확인", for: .normal)
+        button.setTitle("저장", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18.0, weight: .bold)
         button.titleLabel?.textColor = .white
         button.backgroundColor = .systemIndigo
@@ -86,8 +88,12 @@ final class CategorySettingViewController: UIViewController {
     }()
 
     @objc func didTapConfirmButton() {
-        UserDefaults.standard.categories = categories
-        delegate?.tappedConfirmButton()
+        if !deleteCategories.isEmpty {
+            deleteCategories.forEach {
+                UserDefaults.standard.deleteCategory(name: $0)
+            }
+        }
+        delegate?.tappedConfirmButton(categories: categories)
         navigationController?.popViewController(animated: true)
     }
 
@@ -182,6 +188,8 @@ extension CategorySettingViewController: UITableViewDelegate {
         commit editingStyle: UITableViewCell.EditingStyle,
         forRowAt indexPath: IndexPath
     ) {
+        self.deleteCategories.append(categories[indexPath.row
+                                               ])
         self.categories.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }

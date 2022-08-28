@@ -39,23 +39,15 @@ final class ChecklistHeaderView: UICollectionReusableView {
         return button
     }()
 
+    override func prepareForReuse() {
+        categories = []
+    }
+
     func setup(categories: [String], delegate: ChecklistHeaderViewCellDelegate?) {
         self.categories = categories
         self.delegate = delegate
 
-        addSubview(collectionView)
-        addSubview(settingButton)
-
-        collectionView.snp.makeConstraints {
-            $0.leading.top.bottom.equalToSuperview()
-            $0.trailing.equalTo(settingButton.snp.leading).inset(8.0)
-        }
-
-        settingButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview()
-            $0.width.height.equalTo(40.0)
-            $0.centerY.equalToSuperview()
-        }
+        setupLayout()
     }
 }
 
@@ -83,4 +75,26 @@ extension ChecklistHeaderView: UICollectionViewDataSource {
 }
 
 extension ChecklistHeaderView: UICollectionViewDelegate {
+}
+
+private extension ChecklistHeaderView {
+    func setupLayout() {
+        [
+            collectionView,
+            settingButton
+        ].forEach { addSubview($0) }
+
+        collectionView.snp.makeConstraints {
+            $0.leading.top.bottom.equalToSuperview()
+            $0.trailing.equalTo(settingButton.snp.leading).inset(8.0)
+        }
+
+        settingButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview()
+            $0.width.height.equalTo(40.0)
+            $0.centerY.equalToSuperview()
+        }
+
+        collectionView.reloadData()
+    }
 }
