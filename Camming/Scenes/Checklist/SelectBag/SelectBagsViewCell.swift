@@ -10,17 +10,25 @@ import UIKit
 
 protocol SelectBagsViewCellDelegate: AnyObject {
     func tappedBagButton(cell: SelectBagsViewCell)
+    func tappedCheckButton(cell: SelectBagsViewCell, index: Int)
 }
 
 final class SelectBagsViewCell: UICollectionViewCell {
     static let identifier = "SelectBagsViewCell"
 
     private weak var delegate: SelectBagsViewCellDelegate?
-
     private var checklist: Checklist!
+
+    var isEditing: Bool = false {
+        didSet {
+            checkBox.isHidden = !isEditing
+            bagButton.isEnabled = false
+        }
+    }
 
     lazy var bagButton: UIButton = {
         let button = UIButton()
+
         button.setImage(UIImage(systemName: "suitcase"), for: .normal)
         button.setImage(UIImage(systemName: "suitcase.fill"), for: .selected)
 
@@ -29,8 +37,23 @@ final class SelectBagsViewCell: UICollectionViewCell {
         return button
     }()
 
-    @objc func didTapBagButton(_ sender: UIButton) {
+    @objc func didTapBagButton() {
         delegate?.tappedBagButton(cell: self)
+    }
+
+    lazy var checkBox: UIButton = {
+        let button = UIButton()
+
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.setImage(UIImage(systemName: "checkmark.circle"), for: .selected)
+
+        button.addTarget(self, action: #selector(didTapCheckbox), for: .touchUpInside)
+
+        return button
+    }()
+
+    @objc func didTapCheckbox(_ sender: UIButton) {
+        delegate?.tappedCheckButton(cell: self, index: sender.tag)
     }
 
     private lazy var bagName: UILabel = {
@@ -50,9 +73,16 @@ final class SelectBagsViewCell: UICollectionViewCell {
         self.delegate = delegate
         self.checklist = checklist
 
+        checkBox.isHidden = true
+
         bagName.text = bag
 
-        [bagButton, bagName].forEach { addSubview($0) }
+        [
+            bagButton,
+            bagName,
+            checkBox
+        ]
+            .forEach { addSubview($0) }
 
         bagButton.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -62,6 +92,11 @@ final class SelectBagsViewCell: UICollectionViewCell {
         bagName.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(bagButton.snp.bottom).offset(-8.0)
+        }
+
+        checkBox.snp.makeConstraints {
+            $0.bottom.trailing.equalTo(bagButton)
+            $0.width.height.equalTo(40.0)
         }
     }
 }

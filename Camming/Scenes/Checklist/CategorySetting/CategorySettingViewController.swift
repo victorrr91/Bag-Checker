@@ -56,7 +56,9 @@ final class CategorySettingViewController: UIViewController {
         alertController.addTextField()
 
         let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            guard let newCategory = alertController.textFields?[0].text else { return }
+            guard let newCategory = alertController.textFields?[0].text?
+                .trimmingCharacters(in: .whitespaces)
+            else { return }
 
             if newCategory != "" {
                 self?.categories.append(newCategory)
@@ -181,7 +183,6 @@ extension CategorySettingViewController: UITableViewDelegate {
         self.categories.remove(at: sourceIndexPath.row)
         self.categories.insert(category, at: destinationIndexPath.row)
     }
-
 
     func tableView(
         _ tableView: UITableView,

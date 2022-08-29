@@ -26,6 +26,7 @@
 		B145F2A728B9CFBA00954B6A /* CategorySettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */; };
 		B14B039628B1FF2C008C4132 /* ChecklistViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */; };
 		B14B487928BB5B2A001FC561 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B487828BB5B2A001FC561 /* UIButton+.swift */; };
+		B14B487B28BBF2CD001FC561 /* BagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14B487A28BBF2CD001FC561 /* BagViewController.swift */; };
 		B1565DB428B31613001D4A9D /* ChecklistHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */; };
 		B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB628B35D71001D4A9D /* Checklist.swift */; };
 		B1565DBA28B365B5001D4A9D /* ChecklistHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */; };
@@ -79,6 +80,7 @@
 		B145F2A628B9CFBA00954B6A /* CategorySettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySettingViewCell.swift; sourceTree = "<group>"; };
 		B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewCell.swift; sourceTree = "<group>"; };
 		B14B487828BB5B2A001FC561 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		B14B487A28BBF2CD001FC561 /* BagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagViewController.swift; sourceTree = "<group>"; };
 		B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistHeaderView.swift; sourceTree = "<group>"; };
 		B1565DB628B35D71001D4A9D /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistHeaderViewCell.swift; sourceTree = "<group>"; };
@@ -211,13 +213,21 @@
 			path = CategorySetting;
 			sourceTree = "<group>";
 		};
-		B145F2A928B9F92200954B6A /* Bags */ = {
+		B145F2A928B9F92200954B6A /* SelectBag */ = {
 			isa = PBXGroup;
 			children = (
 				B145F2A028B967C000954B6A /* SelectBagsViewController.swift */,
 				B145F2A228B96B8800954B6A /* SelectBagsViewCell.swift */,
 			);
-			path = Bags;
+			path = SelectBag;
+			sourceTree = "<group>";
+		};
+		B14B487C28BBF2E0001FC561 /* Bag */ = {
+			isa = PBXGroup;
+			children = (
+				B14B487A28BBF2CD001FC561 /* BagViewController.swift */,
+			);
+			path = Bag;
 			sourceTree = "<group>";
 		};
 		B1565DB528B318BE001D4A9D /* Checklist */ = {
@@ -227,8 +237,9 @@
 				B14B039528B1FF2C008C4132 /* ChecklistViewCell.swift */,
 				B1565DB328B31613001D4A9D /* ChecklistHeaderView.swift */,
 				B1565DB928B365B5001D4A9D /* ChecklistHeaderViewCell.swift */,
+				B14B487C28BBF2E0001FC561 /* Bag */,
 				B145F2A828B9F91500954B6A /* CategorySetting */,
-				B145F2A928B9F92200954B6A /* Bags */,
+				B145F2A928B9F92200954B6A /* SelectBag */,
 			);
 			path = Checklist;
 			sourceTree = "<group>";
@@ -536,6 +547,7 @@
 				B145F2A728B9CFBA00954B6A /* CategorySettingViewCell.swift in Sources */,
 				B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */,
 				B145F2A528B9CD5900954B6A /* CategorySettingViewController.swift in Sources */,
+				B14B487B28BBF2CD001FC561 /* BagViewController.swift in Sources */,
 				B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */,
 				B1565DB428B31613001D4A9D /* ChecklistHeaderView.swift in Sources */,
 				B14B039628B1FF2C008C4132 /* ChecklistViewCell.swift in Sources */,
@@ -717,6 +729,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -746,6 +759,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

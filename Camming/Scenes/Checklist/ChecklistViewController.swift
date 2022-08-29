@@ -15,6 +15,7 @@ final class ChecklistViewController: UIViewController {
 
     private var categories: [String] = []
     private var checklists: [Checklist] = []
+    private var bags: [String] = []
 
     private var selectIdx: Int?
 
@@ -51,7 +52,10 @@ final class ChecklistViewController: UIViewController {
 
     private lazy var floaty: Floaty = {
         let floaty = Floaty(size: 50.0)
-        floaty.addItem("What's in my bag", icon: UIImage(systemName: "suitcase.fill")!)
+        floaty.addItem("What's in my bag", icon: UIImage(systemName: "suitcase.fill")!) { [weak self] _ in
+            self?.navigationController?
+                .pushViewController(BagViewController(categories: self?.categories ?? []), animated: true)
+        }
 
         floaty.buttonImage = UIImage(systemName: "questionmark.circle.fill")?
             .withTintColor(.white, renderingMode: .alwaysOriginal)
@@ -80,6 +84,7 @@ final class ChecklistViewController: UIViewController {
 
         self.categories = UserDefaults.standard.categories
         self.checklists = UserDefaults.standard.getChecklists(currentCategory)
+        self.bags = UserDefaults.standard.bags
         collectionView.reloadSections(IndexSet(integer: 0))
     }
 
@@ -94,8 +99,7 @@ final class ChecklistViewController: UIViewController {
         let checklist = checklists[selectIdx!]
         let selectBagViewController = SelectBagsViewController(delegate: self, checklist: checklist)
         selectBagViewController.modalPresentationStyle = .popover
-
-        present(selectBagViewController, animated: true)
+        navigationController?.pushViewController(selectBagViewController, animated: true)
     }
 }
 
@@ -118,14 +122,21 @@ extension ChecklistViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? ChecklistViewCell
         else { return UICollectionViewCell() }
-        let checklist = checklists[indexPath.row]
 
-        cell.stateButton.tag = indexPath.row
+        if let bag = checklists[indexPath.item].bag {
+            if !bags.contains(bag) {
+                checklists[indexPath.item].state = .toBuy
+                checklists[indexPath.item].bag = nil
+            }
+        }
+        let checklist = checklists[indexPath.item]
+
+        cell.stateButton.tag = indexPath.item
         cell.setup(checklist: checklist, delegate: self)
 
         cell.delegate = self
 
-        cell.packButton.tag = indexPath.row
+        cell.packButton.tag = indexPath.item
         cell.packButton.addTarget(self, action: #selector(didTapPackButton), for: .touchUpInside)
 
         return cell
@@ -355,12 +366,15 @@ private extension ChecklistViewController {
             alertController.addTextField()
 
             let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-                guard let text = alertController.textFields?[0].text else { return }
+                guard let text = alertController.textFields?[0].text?
+                    .trimmingCharacters(in: .whitespaces)
+                else { return }
 
                 if text != "" {
                     let newChecklist = Checklist(name: text, state: .toBuy)
                     self?.checklists.append(newChecklist)
-                    self?.collectionView.insertItems(at: [IndexPath(row: (self?.checklists.count ?? 0) - 1, section: 0)])
+                    self?.collectionView
+                        .insertItems(at: [IndexPath(row: (self?.checklists.count ?? 0) - 1, section: 0)])
 
                     UserDefaults.standard.setChecklists(self?.checklists ?? [], self?.currentCategory ?? "")
                 }
