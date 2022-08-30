@@ -24,7 +24,6 @@ final class ChecklistViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 16.0
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
@@ -73,7 +72,7 @@ final class ChecklistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.currentCategory = UserDefaults.standard.categories.first ?? ""
+        currentCategory = UserDefaults.standard.categories.first ?? ""
 
         configure()
         setupLayout()
@@ -82,8 +81,20 @@ final class ChecklistViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.categories = UserDefaults.standard.categories
-        self.checklists = UserDefaults.standard.getChecklists(currentCategory)
+        categories = UserDefaults.standard.categories
+        checklists = UserDefaults.standard.getChecklists(currentCategory)
+
+        if UserDefaults.standard.isFirstRun() {
+            categories = ["예시"]
+            currentCategory = "예시"
+            let example1 = Checklist(name: "오른쪽 상단의 설정 표시를 통해 카테고리 추가 및 삭제", state: .toBuy)
+            let example2 = Checklist(name: "중앙 하단의 + 표시를 통해 체크리스트 추가", state: .toPack)
+            let example3 = Checklist(name: "체크리스트를 우측에서 좌측으로 슬라이드 하면 삭제", state: .ready)
+            let example4 = Checklist(name: "오른쪽의 버튼을 통해 체크리스트의 상태를 체크하세요", state: .toBuy)
+
+            checklists = [example1, example2, example3, example4]
+        }
+
         self.bags = UserDefaults.standard.bags
         collectionView.reloadSections(IndexSet(integer: 0))
     }
@@ -154,7 +165,7 @@ extension ChecklistViewController: UICollectionViewDataSource {
         ) as? ChecklistHeaderView
         else { return UICollectionReusableView() }
 
-        header.setup(categories: categories, delegate: self)
+        header.setup(categories: categories, delegate: self, currentCategory: currentCategory)
         header.settingButton.addTarget(self, action: #selector(didTapCategorySettingButton), for: .touchUpInside)
 
         return header
@@ -195,7 +206,7 @@ extension ChecklistViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let width = collectionView.frame.width
-        let height = 36.0
+        let height = 50.0
 
         return CGSize(width: width, height: height)
     }
@@ -206,7 +217,7 @@ extension ChecklistViewController: UICollectionViewDelegateFlowLayout {
         referenceSizeForHeaderInSection section: Int
     ) -> CGSize {
         let width = collectionView.frame.width
-        let height = 60.0
+        let height = 70.0
 
         return CGSize(width: width, height: height)
     }
@@ -312,14 +323,15 @@ private extension ChecklistViewController {
             .forEach { self.view.addSubview($0) }
 
         collectionView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview().inset(16.0)
+            $0.leading.trailing.equalToSuperview().inset(16.0)
             $0.bottom.equalTo(addChecklistButton.snp.top).offset(16.0)
         }
 
         addChecklistButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-1.0)
             $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(50.0)
+            $0.width.height.equalTo(100.0)
         }
 
         floaty.paddingY = 100.0
@@ -364,6 +376,17 @@ private extension ChecklistViewController {
                 preferredStyle: .alert
             )
             alertController.addTextField()
+
+            if self.currentCategory == "" {
+                let cautionAlert = UIAlertController(
+                    title: "카테고리를 먼저 생성해주세요!",
+                    message: "",
+                    preferredStyle: .alert
+                )
+                cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self.present(cautionAlert, animated: true)
+                return
+            }
 
             let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
                 guard let text = alertController.textFields?[0].text?

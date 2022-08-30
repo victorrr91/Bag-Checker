@@ -12,12 +12,15 @@ final class ChecklistHeaderView: UICollectionReusableView {
     static let identifier = "ChecklistHeaderView"
 
     private var categories: [String] = []
-
     private weak var delegate: ChecklistHeaderViewCellDelegate?
+
+    private var selectCategory: String?
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 20.0
+        layout.itemSize = CGSize(width: 72.0, height: 32.0)
 
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
@@ -27,7 +30,6 @@ final class ChecklistHeaderView: UICollectionReusableView {
         )
 
         collectionView.dataSource = self
-        collectionView.delegate = self
 
         return collectionView
     }()
@@ -39,13 +41,14 @@ final class ChecklistHeaderView: UICollectionReusableView {
         return button
     }()
 
-    override func prepareForReuse() {
-        categories = []
-    }
-
-    func setup(categories: [String], delegate: ChecklistHeaderViewCellDelegate?) {
+    func setup(
+        categories: [String],
+        delegate: ChecklistHeaderViewCellDelegate?,
+        currentCategory: String
+    ) {
         self.categories = categories
         self.delegate = delegate
+        self.selectCategory = currentCategory
 
         setupLayout()
     }
@@ -66,15 +69,27 @@ extension ChecklistHeaderView: UICollectionViewDataSource {
         ) as? ChecklistHeaderViewCell
         else { return UICollectionViewCell() }
 
+        cell.categoryButton.tag = indexPath.item
         let category = categories[indexPath.item]
-        
-        cell.setup(category, delegate: delegate)
+
+        if selectCategory == category {
+            cell.categoryButton.isSelected = true
+        } else {
+            cell.categoryButton.isSelected = false
+        }
+
+        cell.setup(category, delegate: delegate, categoryButtonDelegate: self)
 
         return cell
     }
 }
 
-extension ChecklistHeaderView: UICollectionViewDelegate {
+extension ChecklistHeaderView: CategoryButtonDelegate {
+    func didtapCategory(_ sender: UIButton) {
+        let category = categories[sender.tag]
+        selectCategory = category
+        self.collectionView.reloadData()
+    }
 }
 
 private extension ChecklistHeaderView {
@@ -86,12 +101,12 @@ private extension ChecklistHeaderView {
 
         collectionView.snp.makeConstraints {
             $0.leading.top.bottom.equalToSuperview()
-            $0.trailing.equalTo(settingButton.snp.leading).inset(8.0)
+            $0.trailing.equalToSuperview().inset(40.0)
         }
 
         settingButton.snp.makeConstraints {
             $0.trailing.equalToSuperview()
-            $0.width.height.equalTo(40.0)
+//            $0.width.height.equalTo(40.0)
             $0.centerY.equalToSuperview()
         }
 

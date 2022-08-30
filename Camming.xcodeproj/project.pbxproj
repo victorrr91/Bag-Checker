@@ -19,6 +19,8 @@
 		B1051D1228B108C2006205BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B1051D1128B108C2006205BB /* SnapKit */; };
 		B1051D1528B10941006205BB /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1428B10941006205BB /* TabBarItem.swift */; };
 		B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1051D1628B10C14006205BB /* ChecklistViewController.swift */; };
+		B13A3BE628BD37C8000AD20A /* BagsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13A3BE528BD37C8000AD20A /* BagsViewCell.swift */; };
+		B13A3BE828BD37D4000AD20A /* ChecklistsInBagViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13A3BE728BD37D4000AD20A /* ChecklistsInBagViewCell.swift */; };
 		B145F29F28B91E0800954B6A /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = B145F29E28B91E0800954B6A /* SwipeCellKit */; };
 		B145F2A128B967C000954B6A /* SelectBagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A028B967C000954B6A /* SelectBagsViewController.swift */; };
 		B145F2A328B96B8800954B6A /* SelectBagsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145F2A228B96B8800954B6A /* SelectBagsViewCell.swift */; };
@@ -74,6 +76,8 @@
 		B1051D0228B1059C006205BB /* CammingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CammingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B1051D1428B10941006205BB /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		B1051D1628B10C14006205BB /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
+		B13A3BE528BD37C8000AD20A /* BagsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BagsViewCell.swift; sourceTree = "<group>"; };
+		B13A3BE728BD37D4000AD20A /* ChecklistsInBagViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsInBagViewCell.swift; sourceTree = "<group>"; };
 		B145F2A028B967C000954B6A /* SelectBagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBagsViewController.swift; sourceTree = "<group>"; };
 		B145F2A228B96B8800954B6A /* SelectBagsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBagsViewCell.swift; sourceTree = "<group>"; };
 		B145F2A428B9CD5900954B6A /* CategorySettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySettingViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				B14B487A28BBF2CD001FC561 /* BagViewController.swift */,
+				B13A3BE528BD37C8000AD20A /* BagsViewCell.swift */,
+				B13A3BE728BD37D4000AD20A /* ChecklistsInBagViewCell.swift */,
 			);
 			path = Bag;
 			sourceTree = "<group>";
@@ -545,12 +551,14 @@
 				B145F2A128B967C000954B6A /* SelectBagsViewController.swift in Sources */,
 				B1051D1528B10941006205BB /* TabBarItem.swift in Sources */,
 				B145F2A728B9CFBA00954B6A /* CategorySettingViewCell.swift in Sources */,
+				B13A3BE828BD37D4000AD20A /* ChecklistsInBagViewCell.swift in Sources */,
 				B1051D1728B10C14006205BB /* ChecklistViewController.swift in Sources */,
 				B145F2A528B9CD5900954B6A /* CategorySettingViewController.swift in Sources */,
 				B14B487B28BBF2CD001FC561 /* BagViewController.swift in Sources */,
 				B1565DB728B35D71001D4A9D /* Checklist.swift in Sources */,
 				B1565DB428B31613001D4A9D /* ChecklistHeaderView.swift in Sources */,
 				B14B039628B1FF2C008C4132 /* ChecklistViewCell.swift in Sources */,
+				B13A3BE628BD37C8000AD20A /* BagsViewCell.swift in Sources */,
 				B1051CE228B1059A006205BB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

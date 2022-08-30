@@ -22,7 +22,7 @@ final class SelectBagsViewCell: UICollectionViewCell {
     var isEditing: Bool = false {
         didSet {
             checkBox.isHidden = !isEditing
-            bagButton.isEnabled = false
+            bagButton.isEnabled = !isEditing
         }
     }
 

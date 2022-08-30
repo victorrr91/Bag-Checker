@@ -12,6 +12,7 @@ extension UserDefaults {
         case categories
         case checklists
         case bags
+        case isFirstRun
     }
 
     var categories: [String] {
@@ -59,5 +60,13 @@ extension UserDefaults {
                 forKey: Key.bags.rawValue
             )
         }
+    }
+
+    func isFirstRun() -> Bool {
+        if UserDefaults.standard.object(forKey: Key.isFirstRun.rawValue) == nil {
+            UserDefaults.standard.set("N", forKey: Key.isFirstRun.rawValue)
+            return true
+        }
+        return false
     }
 }

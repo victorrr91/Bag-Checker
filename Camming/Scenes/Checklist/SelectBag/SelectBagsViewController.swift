@@ -21,7 +21,7 @@ final class SelectBagsViewController: UIViewController {
     private var bags: [String] = []
 
     private var isEditMode = false
-    private var deleteIndexes: Set<Int> = []
+    private var deleteSet: Set<String> = []
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -88,7 +88,9 @@ final class SelectBagsViewController: UIViewController {
         )
 
         let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            self?.deleteIndexes.forEach { index in
+
+            self?.deleteSet.forEach { bag in
+                let index = self?.bags.firstIndex(of: bag) ?? 0
                 self?.bags.remove(at: index)
             }
             UserDefaults.standard.bags = self?.bags ?? []
@@ -111,7 +113,7 @@ final class SelectBagsViewController: UIViewController {
     private lazy var editButton: UIButton = {
         let button = UIButton()
 
-        button.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "trash.fill"), for: .normal)
         button.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
 
         return button
@@ -122,6 +124,7 @@ final class SelectBagsViewController: UIViewController {
         setEditing(isEditMode, animated: true)
         confirmButton.isHidden = isEditMode
         deleteButton.isHidden = !isEditMode
+        addButton.isHidden = isEditMode
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -155,6 +158,18 @@ final class SelectBagsViewController: UIViewController {
             guard let text = alertController.textFields?[0].text?
                 .trimmingCharacters(in: .whitespaces)
             else { return }
+
+            let bags = self?.bags ?? []
+            if bags.contains(text) {
+                let cautionAlert = UIAlertController(
+                    title: "같은 이름의 가방이 있습니다. 다른 이름으로 다시 시도해주세요.",
+                    message: "",
+                    preferredStyle: .alert
+                )
+                cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self?.present(cautionAlert, animated: true)
+                return
+            }
 
             if text != "" {
                 self?.bags.append(text)
@@ -201,12 +216,12 @@ extension SelectBagsViewController: SelectBagsViewCellDelegate {
     func tappedCheckButton(cell: SelectBagsViewCell, index: Int) {
         cell.checkBox.isSelected.toggle()
         if cell.checkBox.isSelected == true {
-            deleteIndexes.insert(index)
+            deleteSet.insert(bags[index])
         } else {
-            deleteIndexes.remove(index)
+            deleteSet.remove(bags[index])
         }
 
-        if deleteIndexes.isEmpty {
+        if deleteSet.isEmpty {
             deleteButton.isEnabled = false
         } else {
             deleteButton.isEnabled = true

@@ -60,6 +60,18 @@ final class CategorySettingViewController: UIViewController {
                 .trimmingCharacters(in: .whitespaces)
             else { return }
 
+            let categories = self?.categories ?? []
+            if categories.contains(newCategory) {
+                let cautionAlert = UIAlertController(
+                    title: "같은 이름의 카테고리가 있습니다. 다른 이름으로 다시 시도해주세요.",
+                    message: "",
+                    preferredStyle: .alert
+                )
+                cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self?.present(cautionAlert, animated: true)
+                return
+            }
+
             if newCategory != "" {
                 self?.categories.append(newCategory)
                 self?.tabelView.reloadData()
@@ -137,7 +149,7 @@ final class CategorySettingViewController: UIViewController {
         view.backgroundColor = .tertiarySystemBackground
     }
 
-    func scrollToBottom(){
+    func scrollToBottom() {
         let lastRowOfIndexPath = self.tabelView.numberOfRows(inSection: 0) - 1
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: lastRowOfIndexPath, section: 0)

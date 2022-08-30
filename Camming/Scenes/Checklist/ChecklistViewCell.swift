@@ -27,8 +27,9 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15.0, weight: .medium)
+        label.font = .systemFont(ofSize: 16.0, weight: .medium)
         label.textColor = .label
+        label.numberOfLines = 0
 
         return label
     }()
@@ -36,7 +37,7 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
     lazy var stateButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12.0, weight: .medium)
+        button.titleLabel?.font = .systemFont(ofSize: 14.0, weight: .medium)
         button.layer.cornerRadius = 6.0
 
         button.addTarget(self, action: #selector(didTapStateButton), for: .touchUpInside)
@@ -115,14 +116,14 @@ private extension ChecklistViewCell {
 
         bookmark.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20.0)
-            $0.centerY.equalToSuperview().offset(1.5)
+            $0.centerY.equalToSuperview()
             $0.height.width.equalTo(16.0)
         }
 
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(bookmark.snp.trailing).offset(16.0)
             $0.trailing.equalTo(stateButton.snp.leading).offset(-8.0)
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(bookmark)
         }
 
         packButton.snp.makeConstraints {
@@ -133,7 +134,7 @@ private extension ChecklistViewCell {
 
         stateButton.snp.makeConstraints {
             $0.trailing.equalTo(packButton.snp.leading).offset(-8.0)
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(bookmark)
             $0.width.equalTo(60.0)
         }
 
