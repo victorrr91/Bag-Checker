@@ -95,7 +95,7 @@ final class SelectBagsViewController: UIViewController {
             }
             UserDefaults.standard.bags = self?.bags ?? []
 
-            self?.setEditing(false, animated: true)
+            self?.isEditMode = false
             self?.confirmButton.isHidden = false
             self?.deleteButton.isHidden = true
 
@@ -113,7 +113,7 @@ final class SelectBagsViewController: UIViewController {
     private lazy var editButton: UIButton = {
         let button = UIButton()
 
-        button.setImage(UIImage(systemName: "trash.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "gearshape.fill"), for: .normal)
         button.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
 
         return button
@@ -121,19 +121,11 @@ final class SelectBagsViewController: UIViewController {
 
     @objc func didTapEditButton() {
         isEditMode = !isEditMode
-        setEditing(isEditMode, animated: true)
         confirmButton.isHidden = isEditMode
         deleteButton.isHidden = !isEditMode
         addButton.isHidden = isEditMode
-    }
 
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-
-        collectionView.indexPathsForVisibleItems.forEach { indexPath in
-            guard let cell = collectionView.cellForItem(at: indexPath) as? SelectBagsViewCell else { return }
-            cell.isEditing = editing
-        }
+        collectionView.reloadData()
     }
 
     private lazy var addButton: UIButton = {
@@ -259,6 +251,15 @@ extension SelectBagsViewController: UICollectionViewDataSource {
             beforeSelect = cell
             beforeSelect?.bagButton.isSelected = true
             confirmButton.isEnabled = true
+        }
+
+        cell.checkBox.isHidden = !isEditMode
+        cell.bagButton.isEnabled = !isEditMode
+
+        if deleteSet.contains(bag) {
+            cell.checkBox.isSelected = true
+        } else {
+            cell.checkBox.isSelected = false
         }
 
         cell.bagButton.tag = indexPath.item

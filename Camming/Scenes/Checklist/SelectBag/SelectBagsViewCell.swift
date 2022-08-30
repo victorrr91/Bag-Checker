@@ -19,13 +19,6 @@ final class SelectBagsViewCell: UICollectionViewCell {
     private weak var delegate: SelectBagsViewCellDelegate?
     private var checklist: Checklist!
 
-    var isEditing: Bool = false {
-        didSet {
-            checkBox.isHidden = !isEditing
-            bagButton.isEnabled = !isEditing
-        }
-    }
-
     lazy var bagButton: UIButton = {
         let button = UIButton()
 
@@ -72,8 +65,6 @@ final class SelectBagsViewCell: UICollectionViewCell {
     ) {
         self.delegate = delegate
         self.checklist = checklist
-
-        checkBox.isHidden = true
 
         bagName.text = bag
 
