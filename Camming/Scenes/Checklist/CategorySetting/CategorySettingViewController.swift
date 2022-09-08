@@ -131,10 +131,10 @@ extension CategorySettingViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let category = categories[sourceIndexPath.row]
-        try? realm.write({
+        try? realm.write {
             categories.remove(at: sourceIndexPath.row)
             categories.insert(category, at: destinationIndexPath.row)
-        })
+        }
     }
 
     func tableView(
@@ -143,9 +143,9 @@ extension CategorySettingViewController: UITableViewDelegate {
         forRowAt indexPath: IndexPath
     ) {
         self.deleteCategories.append(categories[indexPath.row])
-        try? realm.write({
+        try? realm.write {
             self.categories.remove(at: indexPath.row)
-        })
+        }
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
@@ -211,9 +211,9 @@ private extension CategorySettingViewController {
             if newCategory != "" {
                 let category = Category(value: ["name": newCategory])
 
-                try? self?.realm.write({
+                try? self?.realm.write {
                     self?.categories.append(category)
-                })
+                }
 
                 self?.tabelView.reloadData()
                 self?.scrollToBottom()
@@ -242,9 +242,9 @@ private extension CategorySettingViewController {
                 }
             }
         }
-        try? realm.write({
+        try? realm.write {
             realm.objects(Categories.self).first?.categories = categories
-        })
+        }
 
         delegate?.tappedConfirmButton()
         navigationController?.popViewController(animated: true)

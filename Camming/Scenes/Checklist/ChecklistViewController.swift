@@ -162,20 +162,20 @@ extension ChecklistViewController: UICollectionViewDataSource {
     ) {
         if sourceIndexPath.item < destinationIndexPath.item {
             let insertValue = checklists[sourceIndexPath.item]
-            try? realm.write({
+            try? realm.write {
                 checklists.insert(insertValue, at: destinationIndexPath.item + 1)
                 checklists.remove(at: sourceIndexPath.item)
-            })
+            }
         } else if sourceIndexPath.item > destinationIndexPath.item {
             let insertValue = checklists[sourceIndexPath.item]
-            try? realm.write({
+            try? realm.write {
                 checklists.insert(insertValue, at: destinationIndexPath.item)
                 checklists.remove(at: sourceIndexPath.item + 1)
-            })
+            }
         }
-        try? realm.write({
+        try? realm.write {
             currentCategory?.setValue(checklists, forKey: "checklists")
-        })
+        }
     }
 }
 
@@ -273,9 +273,9 @@ extension ChecklistViewController: ChecklistViewCellDelegate {
 
             present(alertController, animated: true)
         } else {
-            try? realm.write({
+            try? realm.write {
                 checklists[stateButton.tag].state = state
-            })
+            }
         }
     }
 }
@@ -300,9 +300,9 @@ extension ChecklistViewController: CategorySettingViewControllerDelegate {
 
 extension ChecklistViewController: SelectBagsViewControllerDelegate {
     func selectBag(modifiedChecklist: Checklist) {
-        try? realm.write({
+        try? realm.write {
             checklists[selectIdx!] = modifiedChecklist
-        })
+        }
 
         collectionView.reloadData()
     }
@@ -374,8 +374,6 @@ private extension ChecklistViewController {
             preferredStyle: .alert
         )
         alertController.addTextField()
-
-        print(self.currentCategory?.name)
 
         if self.currentCategory?.name == nil {
             let cautionAlert = UIAlertController(

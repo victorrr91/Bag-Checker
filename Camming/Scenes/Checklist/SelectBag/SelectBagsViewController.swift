@@ -277,9 +277,9 @@ private extension SelectBagsViewController {
 
             if text != "" {
                 let bag = Bag(value: ["name": text])
-                try? self?.realm.write({
+                try? self?.realm.write {
                     self?.realm.add(bag)
-                })
+                }
 
                 self?.collectionView
                     .insertItems(at: [IndexPath(row: (self?.bags.count ?? 0) - 1, section: 0)])
