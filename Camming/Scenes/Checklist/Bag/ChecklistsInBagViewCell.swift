@@ -20,7 +20,7 @@ final class ChecklistsInBagViewCell: UITableViewCell {
     }()
 
     func setup(checklist: Checklist) {
-        nameLabel.text = checklist.name
+        nameLabel.text = checklist.product
 
         addSubview(nameLabel)
 

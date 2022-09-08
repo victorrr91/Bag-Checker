@@ -7,14 +7,9 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
-struct Checklist: Codable {
-    var name: String
-    var state: CheckState
-    var bag: String?
-}
-
-enum CheckState: String, Codable {
+enum CheckState: String, PersistableEnum {
     case toBuy
     case toPack
     case ready
@@ -25,5 +20,45 @@ enum CheckState: String, Codable {
         case .toPack: return .orange
         case .ready: return .init(red: 4/255, green: 163/255, blue: 103/255, alpha: 0.6)
         }
+    }
+}
+
+class Categories: Object {
+    @Persisted var name = ""
+    @Persisted var categories = List<Category>()
+
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
+}
+
+class Category: Object {
+    @Persisted var name = ""
+    @Persisted var checklists = List<Checklist>()
+
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
+}
+
+class Checklist: Object {
+    @Persisted var product = ""
+    @Persisted var state: CheckState = .toBuy
+    @Persisted var bag: Bag? = nil
+
+    convenience init(name: String) {
+        self.init()
+        self.product = product
+    }
+}
+
+class Bag: Object {
+    @Persisted var name = ""
+
+    convenience init(name: String) {
+        self.init()
+        self.name = name
     }
 }

@@ -7,12 +7,14 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 final class BagViewController: UIViewController {
-    private var allChecklists: [Checklist] = []
-    private var bags: [String] = []
+    var realm: Realm!
+
+    private var bags: Results<Bag>
     private var checklists: [Checklist] = []
-    private var currentBag = ""
+    private var currentBag: Bag?
 
     private var beforeSelect: BagsViewCell?
 
@@ -41,18 +43,21 @@ final class BagViewController: UIViewController {
         return tableView
     }()
 
-    init(categories: [String]) {
+    private lazy var separator: UIView = {
+        let view = UIView()
+        view.backgroundColor = .secondarySystemBackground
+
+        return view
+    }()
+
+    init(realm: Realm) {
+        self.bags = realm.objects(Bag.self)
+        self.realm = realm
+
         super.init(nibName: nil, bundle: nil)
 
-        categories.forEach { category in
-            let checklists = UserDefaults.standard.getChecklists(category)
-            self.allChecklists.append(contentsOf: checklists)
-        }
-
-        bags = UserDefaults.standard.bags
-        currentBag = bags.first ?? ""
-
-        fetchChecklists(current: currentBag)
+        self.currentBag = bags.first
+        fetchChecklists(currentBag: currentBag ?? Bag(value: ["name": ""]))
     }
 
     required init?(coder: NSCoder) {
@@ -61,19 +66,15 @@ final class BagViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        realm = try? Realm()
 
         setupLayout()
+
+        view.backgroundColor = .systemBackground
     }
 
-    func fetchChecklists(current: String) {
-        var currentChecklists: [Checklist] = []
-        allChecklists.forEach { checklist in
-            let bag = checklist.bag ?? ""
-            if current == bag {
-                currentChecklists.append(checklist)
-            }
-        }
-        checklists = currentChecklists
+    func fetchChecklists(currentBag: Bag) {
+        checklists = realm.objects(Checklist.self).filter { $0.bag?.name == currentBag.name }
     }
 }
 
@@ -88,7 +89,7 @@ extension BagViewController: UICollectionViewDataSource {
         ) as? BagsViewCell else { return UICollectionViewCell() }
 
         let bag = bags[indexPath.item]
-        if bag == currentBag {
+        if bag.name == currentBag?.name {
             beforeSelect = cell
             beforeSelect?.bagButton.isSelected = true
         }
@@ -111,9 +112,9 @@ extension BagViewController: BagsViewCellDelegate {
         }
         cell.bagButton.isSelected = true
         beforeSelect = cell
-        currentBag = cell.nameLabel.text ?? ""
+        currentBag = bags[cell.bagButton.tag]
 
-        fetchChecklists(current: currentBag)
+        fetchChecklists(currentBag: currentBag ?? Bag(value: ["name": ""]))
         tableView.reloadData()
     }
 }
@@ -144,7 +145,7 @@ extension BagViewController: UITableViewDelegate {
 
 private extension BagViewController {
     func setupLayout() {
-        [collectionView, tableView]
+        [collectionView, tableView, separator]
             .forEach { view.addSubview($0) }
 
         collectionView.snp.makeConstraints {
@@ -157,6 +158,12 @@ private extension BagViewController {
             $0.leading.equalTo(collectionView.snp.trailing)
             $0.bottom.equalTo(collectionView)
             $0.top.trailing.equalToSuperview()
+        }
+
+        separator.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(1.0)
         }
     }
 }

@@ -20,10 +20,8 @@ class TabBarController: UITabBarController {
                     image: tabBar.icon.default,
                     selectedImage: tabBar.icon.selected
                 )
-
                 return viewController
             }
-
         viewControllers = tabBarViewController
     }
 }

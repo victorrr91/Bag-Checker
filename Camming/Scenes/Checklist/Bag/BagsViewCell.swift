@@ -17,6 +17,15 @@ final class BagsViewCell: UICollectionViewCell {
 
     private weak var delegate: BagsViewCellDelegate?
 
+    var nameLabel: UILabel = {
+        let label = UILabel()
+
+        label.font = .systemFont(ofSize: 16.0, weight: .semibold)
+        label.textColor = .label
+
+        return label
+    }()
+
     lazy var bagButton: UIButton = {
         let button = UIButton()
 
@@ -32,19 +41,10 @@ final class BagsViewCell: UICollectionViewCell {
         delegate?.selectBag(cell: self)
     }
 
-    var nameLabel: UILabel = {
-        let label = UILabel()
-
-        label.font = .systemFont(ofSize: 16.0, weight: .semibold)
-        label.textColor = .label
-
-        return label
-    }()
-
-    func setup(bag: String, delegate: BagsViewCellDelegate?) {
+    func setup(bag: Bag, delegate: BagsViewCellDelegate?) {
         self.delegate = delegate
 
-        nameLabel.text = bag
+        nameLabel.text = bag.name
 
         [bagButton, nameLabel].forEach { addSubview($0) }
 

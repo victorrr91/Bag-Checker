@@ -60,38 +60,12 @@ final class ChecklistViewCell: SwipeCollectionViewCell {
         return view
     }()
 
-    @objc func didTapStateButton() {
-
-        switch stateButton.titleLabel?.text {
-
-        case CheckState.toBuy.rawValue:
-            changeStateButtonConfig(to: .toPack, hidden: false)
-
-        case CheckState.toPack.rawValue:
-            changeStateButtonConfig(to: .toBuy, hidden: true)
-
-        case CheckState.ready.rawValue:
-            stateDelegate?.checklistStateChanged(state: .ready, stateButton: stateButton, packButton: packButton)
-
-        default:
-            return
-        }
-    }
-
-    func changeStateButtonConfig(to state: CheckState, hidden: Bool) {
-        stateButton.setTitle(state.rawValue, for: .normal)
-        stateDelegate?.checklistStateChanged(state: state, stateButton: stateButton, packButton: packButton)
-        stateButton.backgroundColor = state.color
-
-        packButton.isHidden = hidden
-    }
-
     func setup(checklist: Checklist, delegate: ChecklistViewCellDelegate?) {
         self.stateDelegate = delegate
 
         setupLayout()
 
-        nameLabel.text = checklist.name
+        nameLabel.text = checklist.product
         stateButton.setTitle(checklist.state.rawValue, for: .normal)
         stateButton.backgroundColor = checklist.state.color
         if stateButton.titleLabel?.text == CheckState.toBuy.rawValue ||
@@ -143,5 +117,29 @@ private extension ChecklistViewCell {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1.0)
         }
+    }
+
+    @objc func didTapStateButton() {
+        switch stateButton.titleLabel?.text {
+        case CheckState.toBuy.rawValue:
+            changeStateButtonConfig(to: .toPack, hidden: false)
+
+        case CheckState.toPack.rawValue:
+            changeStateButtonConfig(to: .toBuy, hidden: true)
+
+        case CheckState.ready.rawValue:
+            stateDelegate?.checklistStateChanged(state: .ready, stateButton: stateButton, packButton: packButton)
+
+        default:
+            return
+        }
+    }
+
+    func changeStateButtonConfig(to state: CheckState, hidden: Bool) {
+        stateButton.setTitle(state.rawValue, for: .normal)
+        stateDelegate?.checklistStateChanged(state: state, stateButton: stateButton, packButton: packButton)
+        stateButton.backgroundColor = state.color
+
+        packButton.isHidden = hidden
     }
 }

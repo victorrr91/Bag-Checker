@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol ChecklistHeaderViewCellDelegate: AnyObject {
-    func didSelectCategory(_ selectedCategory: String)
+    func didSelectCategory(_ sender: UIButton)
 }
 
 protocol CategoryButtonDelegate: AnyObject {
@@ -27,14 +27,11 @@ final class ChecklistHeaderViewCell: UICollectionViewCell {
         button.titleLabel?.font = .systemFont(ofSize: 15.0, weight: .semibold)
         button.setTitleColor(UIColor.white, for: .normal)
 
-//        button.backgroundColor = .darkGray
-
         button.setBackgroundColor(.darkGray, for: .normal)
         button.setBackgroundColor(.systemIndigo, for: .selected)
         button.clipsToBounds = true
         button.titleLabel?.adjustsFontForContentSizeCategory = true
 
-//        button.contentEdgeInsets = UIEdgeInsets(top: 8.0, left: 20.0, bottom: 8.0, right: 20.0)
         button.layer.cornerRadius = 6.0
         button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
 
@@ -43,17 +40,12 @@ final class ChecklistHeaderViewCell: UICollectionViewCell {
         return button
     }()
 
-    @objc func didTapCategory() {
-        delegate?.didSelectCategory(categoryButton.titleLabel?.text ?? "")
-        categoryButtonDelegate?.didtapCategory(categoryButton)
-    }
-
     func setup(
-        _ category: String,
+        category: Category,
         delegate: ChecklistHeaderViewCellDelegate?,
         categoryButtonDelegate: CategoryButtonDelegate?
     ) {
-        categoryButton.setTitle(category, for: .normal)
+        categoryButton.setTitle(category.name, for: .normal)
         self.delegate = delegate
         self.categoryButtonDelegate = categoryButtonDelegate
 
@@ -69,5 +61,10 @@ private extension ChecklistHeaderViewCell {
             $0.leading.trailing.top.bottom.equalToSuperview()
             $0.centerY.equalToSuperview()
         }
+    }
+
+    @objc func didTapCategory(_ sender: UIButton) {
+        delegate?.didSelectCategory(categoryButton)
+        categoryButtonDelegate?.didtapCategory(categoryButton)
     }
 }

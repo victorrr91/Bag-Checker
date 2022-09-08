@@ -9,13 +9,14 @@ import Floaty
 import UIKit
 import SnapKit
 import SwipeCellKit
+import RealmSwift
 
 final class ChecklistViewController: UIViewController {
-    private var currentCategory = ""
+    var realm: Realm!
 
-    private var categories: [String] = []
-    private var checklists: [Checklist] = []
-    private var bags: [String] = []
+    private var categories = List<Category>()
+    private var currentCategory: Category?
+    private var checklists = List<Checklist>()
 
     private var selectIdx: Int?
 
@@ -50,16 +51,16 @@ final class ChecklistViewController: UIViewController {
     }()
 
     private lazy var floaty: Floaty = {
-        let floaty = Floaty(size: 50.0)
-        floaty.addItem("What's in my bag", icon: UIImage(systemName: "suitcase.fill")!) { [weak self] _ in
-            self?.navigationController?
-                .pushViewController(BagViewController(categories: self?.categories ?? []), animated: true)
+        let float = Floaty(size: 50.0)
+        float.addItem("What's in my Bag?", icon: UIImage(systemName: "suitcase.fill")) { [weak self] _ in
+            guard let self = self else { return }
+            self.navigationController?.pushViewController(BagViewController(realm: self.realm), animated: true)
         }
 
-        floaty.buttonImage = UIImage(systemName: "questionmark.circle.fill")?
+        float.buttonImage = UIImage(systemName: "questionmark.circle.fill")?
             .withTintColor(.white, renderingMode: .alwaysOriginal)
 
-        return floaty
+        return float
     }()
 
     private lazy var separator: UIView = {
@@ -72,53 +73,27 @@ final class ChecklistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        currentCategory = UserDefaults.standard.categories.first ?? ""
+        realm = try? Realm()
+
+        if UserDefaults.standard.isFirstRun(of: self.description) {
+            try? realm.write {
+                realm.add(Categories(value: ["name": "start"]))
+            }
+        }
+
+        categories = realm.objects(Categories.self).first!.categories
+        currentCategory = categories.first
+        checklists = currentCategory?.checklists ?? List<Checklist>()
 
         configure()
         setupLayout()
+
+        view.backgroundColor = .systemBackground
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        categories = UserDefaults.standard.categories
-        checklists = UserDefaults.standard.getChecklists(currentCategory)
-
-        if UserDefaults.standard.isFirstRun() {
-            categories = ["예시"]
-            currentCategory = "예시"
-            let example1 = Checklist(name: "오른쪽 상단의 설정 표시를 통해 카테고리 추가 및 삭제", state: .toBuy)
-            let example2 = Checklist(name: "중앙 하단의 + 표시를 통해 체크리스트 추가", state: .toPack)
-            let example3 = Checklist(name: "체크리스트를 우측에서 좌측으로 슬라이드 하면 삭제", state: .ready)
-            let example4 = Checklist(name: "오른쪽의 버튼을 통해 체크리스트의 상태를 체크하세요", state: .toBuy)
-
-            checklists = [example1, example2, example3, example4]
-        }
-
-        self.bags = UserDefaults.standard.bags
-        collectionView.reloadSections(IndexSet(integer: 0))
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        UserDefaults.standard.setChecklists(checklists, currentCategory)
-
-        super.viewWillDisappear(animated)
-    }
-
-    @objc func didTapPackButton(_ sender: UIButton) {
-        selectIdx = sender.tag
-        let checklist = checklists[selectIdx!]
-        let selectBagViewController = SelectBagsViewController(delegate: self, checklist: checklist)
-        selectBagViewController.modalPresentationStyle = .popover
-        navigationController?.pushViewController(selectBagViewController, animated: true)
-    }
-}
-
-extension ChecklistViewController: SelectBagsViewControllerDelegate {
-    func selectBag(modifiedChecklist: Checklist) {
-        checklists[selectIdx!] = modifiedChecklist
-
-        UserDefaults.standard.setChecklists(checklists, currentCategory)
         collectionView.reloadData()
     }
 }
@@ -134,18 +109,15 @@ extension ChecklistViewController: UICollectionViewDataSource {
         ) as? ChecklistViewCell
         else { return UICollectionViewCell() }
 
-        if let bag = checklists[indexPath.item].bag {
-            if !bags.contains(bag) {
-                checklists[indexPath.item].state = .toBuy
-                checklists[indexPath.item].bag = nil
-            }
-        }
         let checklist = checklists[indexPath.item]
 
+        if checklist.state == .ready, checklist.bag == nil {
+            try? realm.write {
+                checklist.state = .toBuy
+            }
+        }
         cell.stateButton.tag = indexPath.item
         cell.setup(checklist: checklist, delegate: self)
-
-        cell.delegate = self
 
         cell.packButton.tag = indexPath.item
         cell.packButton.addTarget(self, action: #selector(didTapPackButton), for: .touchUpInside)
@@ -165,7 +137,11 @@ extension ChecklistViewController: UICollectionViewDataSource {
         ) as? ChecklistHeaderView
         else { return UICollectionReusableView() }
 
-        header.setup(categories: categories, delegate: self, currentCategory: currentCategory)
+        header.setup(
+            categories: categories,
+            delegate: self,
+            currentCategory: currentCategory ?? Category(value: ["name": ""])
+        )
         header.settingButton.addTarget(self, action: #selector(didTapCategorySettingButton), for: .touchUpInside)
 
         return header
@@ -186,18 +162,22 @@ extension ChecklistViewController: UICollectionViewDataSource {
     ) {
         if sourceIndexPath.item < destinationIndexPath.item {
             let insertValue = checklists[sourceIndexPath.item]
-            checklists.insert(insertValue, at: destinationIndexPath.item + 1)
-            checklists.remove(at: sourceIndexPath.item)
+            try? realm.write({
+                checklists.insert(insertValue, at: destinationIndexPath.item + 1)
+                checklists.remove(at: sourceIndexPath.item)
+            })
         } else if sourceIndexPath.item > destinationIndexPath.item {
             let insertValue = checklists[sourceIndexPath.item]
-            checklists.insert(insertValue, at: destinationIndexPath.item)
-            checklists.remove(at: sourceIndexPath.item + 1)
+            try? realm.write({
+                checklists.insert(insertValue, at: destinationIndexPath.item)
+                checklists.remove(at: sourceIndexPath.item + 1)
+            })
         }
-        UserDefaults.standard.setChecklists(checklists, currentCategory)
+        try? realm.write({
+            currentCategory?.setValue(checklists, forKey: "checklists")
+        })
     }
 }
-
-extension ChecklistViewController: UICollectionViewDelegate {}
 
 extension ChecklistViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
@@ -223,6 +203,7 @@ extension ChecklistViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// Swipe를 이용한 삭제
 extension ChecklistViewController: SwipeCollectionViewCellDelegate {
     func collectionView(
         _ collectionView: UICollectionView,
@@ -236,7 +217,6 @@ extension ChecklistViewController: SwipeCollectionViewCellDelegate {
                 self?.checklists.remove(at: indexPath.row)
                 collectionView.deleteItems(at: [indexPath])
             }
-
             deleteAction.image = UIImage(systemName: "trash")
             deleteAction.backgroundColor = .red
             return [deleteAction]
@@ -261,8 +241,11 @@ extension ChecklistViewController: SwipeCollectionViewCellDelegate {
 }
 
 extension ChecklistViewController: ChecklistViewCellDelegate {
-    func checklistStateChanged(state: CheckState, stateButton: UIButton, packButton: UIButton) {
-
+    func checklistStateChanged(
+        state: CheckState,
+        stateButton: UIButton,
+        packButton: UIButton
+    ) {
         if state == .ready {
             let alertController = UIAlertController(
                 title: "경고",
@@ -271,12 +254,13 @@ extension ChecklistViewController: ChecklistViewCellDelegate {
             )
 
             let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-                self?.checklists[stateButton.tag].bag = nil
-                self?.checklists[stateButton.tag].state = .toBuy
-                UserDefaults.standard.setChecklists(
-                    self?.checklists ?? [],
-                    self?.currentCategory ?? ""
-                )
+                guard let self = self else { return }
+
+                try? self.realm.write {
+                    self.checklists[stateButton.tag].bag = nil
+                    self.checklists[stateButton.tag].state = .toBuy
+                }
+
                 stateButton.setTitle(CheckState.toBuy.rawValue, for: .normal)
                 stateButton.backgroundColor = CheckState.toBuy.color
                 packButton.isHidden = true
@@ -289,31 +273,38 @@ extension ChecklistViewController: ChecklistViewCellDelegate {
 
             present(alertController, animated: true)
         } else {
-            checklists[stateButton.tag].state = state
+            try? realm.write({
+                checklists[stateButton.tag].state = state
+            })
         }
     }
 }
 
 extension ChecklistViewController: ChecklistHeaderViewCellDelegate {
-    func didSelectCategory(_ selectedCategory: String) {
-        UserDefaults.standard.setChecklists(checklists, currentCategory)
-        self.currentCategory = selectedCategory
-        self.checklists = UserDefaults.standard.getChecklists(currentCategory)
+    func didSelectCategory(_ sender: UIButton) {
+        currentCategory = categories[sender.tag]
+        checklists = currentCategory?.checklists ?? List<Checklist>()
         self.collectionView.reloadData()
     }
 }
 
 extension ChecklistViewController: CategorySettingViewControllerDelegate {
-    func tappedConfirmButton(categories: [String]) {
-        self.categories = categories
-        self.currentCategory = categories.first ?? ""
-        self.checklists = UserDefaults.standard.getChecklists(currentCategory)
+    func tappedConfirmButton() {
+        categories = realm.objects(Categories.self).first!.categories
+        currentCategory = categories.first
+        checklists = currentCategory?.checklists ?? List<Checklist>()
 
-        if let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            flowLayout.invalidateLayout()
-        }
+        self.collectionView.reloadData()
+    }
+}
 
-        UserDefaults.standard.categories = categories
+extension ChecklistViewController: SelectBagsViewControllerDelegate {
+    func selectBag(modifiedChecklist: Checklist) {
+        try? realm.write({
+            checklists[selectIdx!] = modifiedChecklist
+        })
+
+        collectionView.reloadData()
     }
 }
 
@@ -364,51 +355,59 @@ private extension ChecklistViewController {
     }
 
     @objc func didTapCategorySettingButton() {
-        let viewController = CategorySettingViewController(categories: categories, delegate: self)
+        let viewController = CategorySettingViewController(delegate: self, realm: realm)
         navigationController?.pushViewController(viewController, animated: true)
     }
 
+    @objc func didTapPackButton(_ sender: UIButton) {
+        selectIdx = sender.tag
+        let checklist = checklists[selectIdx!]
+        let selectBagViewController = SelectBagsViewController(delegate: self, checklist: checklist, realm: realm)
+        selectBagViewController.modalPresentationStyle = .popover
+        navigationController?.pushViewController(selectBagViewController, animated: true)
+    }
+
     @objc func didTapAddChecklistButton() {
-        if checklists.last?.name != "" {
-            let alertController = UIAlertController(
-                title: "체크리스트 추가하기",
-                message: "어떤 항목을 추가하시나요?",
+        let alertController = UIAlertController(
+            title: "체크리스트 추가하기",
+            message: "어떤 항목을 추가하시나요?",
+            preferredStyle: .alert
+        )
+        alertController.addTextField()
+
+        print(self.currentCategory?.name)
+
+        if self.currentCategory?.name == nil {
+            let cautionAlert = UIAlertController(
+                title: "카테고리를 먼저 생성해주세요!",
+                message: "",
                 preferredStyle: .alert
             )
-            alertController.addTextField()
-
-            if self.currentCategory == "" {
-                let cautionAlert = UIAlertController(
-                    title: "카테고리를 먼저 생성해주세요!",
-                    message: "",
-                    preferredStyle: .alert
-                )
-                cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                self.present(cautionAlert, animated: true)
-                return
-            }
-
-            let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-                guard let text = alertController.textFields?[0].text?
-                    .trimmingCharacters(in: .whitespaces)
-                else { return }
-
-                if text != "" {
-                    let newChecklist = Checklist(name: text, state: .toBuy)
-                    self?.checklists.append(newChecklist)
-                    self?.collectionView
-                        .insertItems(at: [IndexPath(row: (self?.checklists.count ?? 0) - 1, section: 0)])
-
-                    UserDefaults.standard.setChecklists(self?.checklists ?? [], self?.currentCategory ?? "")
-                }
-            }
-
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-
-            alertController.addAction(confirm)
-            alertController.addAction(cancel)
-
-            present(alertController, animated: true)
+            cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            self.present(cautionAlert, animated: true)
+            return
         }
+
+        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let text = alertController.textFields?[0].text?
+                .trimmingCharacters(in: .whitespaces)
+            else { return }
+
+            if text != "" {
+                try? self?.realm.write {
+                    let newChecklist = Checklist(value: ["product": text])
+                    self?.currentCategory?.checklists.append(newChecklist)
+                }
+                self?.collectionView
+                    .insertItems(at: [IndexPath(row: (self?.checklists.count ?? 0) - 1, section: 0)])
+            }
+        }
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alertController.addAction(confirm)
+        alertController.addAction(cancel)
+
+        present(alertController, animated: true)
     }
 }

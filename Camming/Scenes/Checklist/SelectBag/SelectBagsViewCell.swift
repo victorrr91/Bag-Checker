@@ -10,14 +10,13 @@ import UIKit
 
 protocol SelectBagsViewCellDelegate: AnyObject {
     func tappedBagButton(cell: SelectBagsViewCell)
-    func tappedCheckButton(cell: SelectBagsViewCell, index: Int)
+    func tappedDeleteButton(cell: SelectBagsViewCell, index: Int)
 }
 
 final class SelectBagsViewCell: UICollectionViewCell {
     static let identifier = "SelectBagsViewCell"
 
     private weak var delegate: SelectBagsViewCellDelegate?
-    private var checklist: Checklist!
 
     lazy var bagButton: UIButton = {
         let button = UIButton()
@@ -30,24 +29,15 @@ final class SelectBagsViewCell: UICollectionViewCell {
         return button
     }()
 
-    @objc func didTapBagButton() {
-        delegate?.tappedBagButton(cell: self)
-    }
-
-    lazy var checkBox: UIButton = {
+    lazy var deleteButton: UIButton = {
         let button = UIButton()
 
-        button.setImage(UIImage(systemName: "circle"), for: .normal)
-        button.setImage(UIImage(systemName: "checkmark.circle"), for: .selected)
+        button.setImage(UIImage(systemName: "trash.fill"), for: .normal)
 
-        button.addTarget(self, action: #selector(didTapCheckbox), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
 
         return button
     }()
-
-    @objc func didTapCheckbox(_ sender: UIButton) {
-        delegate?.tappedCheckButton(cell: self, index: sender.tag)
-    }
 
     private lazy var bagName: UILabel = {
         let label = UILabel()
@@ -58,20 +48,20 @@ final class SelectBagsViewCell: UICollectionViewCell {
         return label
     }()
 
-    func setup(
-        bag: String,
-        delegate: SelectBagsViewCellDelegate?,
-        checklist: Checklist
-    ) {
+    func setup(bag: Bag, delegate: SelectBagsViewCellDelegate?) {
         self.delegate = delegate
-        self.checklist = checklist
+        bagName.text = bag.name
 
-        bagName.text = bag
+        setupLayout()
+    }
+}
 
+private extension SelectBagsViewCell {
+    func setupLayout() {
         [
             bagButton,
             bagName,
-            checkBox
+            deleteButton
         ]
             .forEach { addSubview($0) }
 
@@ -85,9 +75,17 @@ final class SelectBagsViewCell: UICollectionViewCell {
             $0.top.equalTo(bagButton.snp.bottom).offset(-8.0)
         }
 
-        checkBox.snp.makeConstraints {
+        deleteButton.snp.makeConstraints {
             $0.bottom.trailing.equalTo(bagButton)
             $0.width.height.equalTo(40.0)
         }
+    }
+
+    @objc func didTapBagButton() {
+        delegate?.tappedBagButton(cell: self)
+    }
+
+    @objc func didTapDeleteButton(_ sender: UIButton) {
+        delegate?.tappedDeleteButton(cell: self, index: sender.tag)
     }
 }

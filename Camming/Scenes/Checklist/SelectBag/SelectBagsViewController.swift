@@ -7,21 +7,23 @@
 
 import Foundation
 import UIKit
-import XCTest
+import RealmSwift
 
 protocol SelectBagsViewControllerDelegate: AnyObject {
     func selectBag(modifiedChecklist: Checklist)
 }
 
 final class SelectBagsViewController: UIViewController {
+    var realm: Realm!
+
     private weak var delegate: SelectBagsViewControllerDelegate?
     private var beforeSelect: SelectBagsViewCell?
 
     private var checklist: Checklist!
-    private var bags: [String] = []
+    private var bags: Results<Bag>
 
     private var isEditMode = false
-    private var deleteSet: Set<String> = []
+    private var deleteSet: Set<Bag> = []
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -50,65 +52,12 @@ final class SelectBagsViewController: UIViewController {
         button.setBackgroundColor(.secondarySystemBackground, for: .disabled)
         button.layer.cornerRadius = 8.0
 
+        button.isEnabled = false
+
         button.addTarget(self, action: #selector(didTapConfirmButton), for: .touchUpInside)
 
         return button
     }()
-
-    @objc func didTapConfirmButton() {
-        guard let selectIndex = beforeSelect?.bagButton.tag else { return }
-        let bag = bags[selectIndex]
-        checklist.bag = bag
-        checklist.state = .ready
-
-        delegate?.selectBag(modifiedChecklist: checklist)
-        navigationController?.popViewController(animated: true)
-    }
-
-    private lazy var deleteButton: UIButton = {
-        let button = UIButton()
-
-        button.setTitle("삭제", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 18.0, weight: .bold)
-        button.titleLabel?.textColor = .white
-        button.setBackgroundColor(.red, for: .normal)
-        button.setBackgroundColor(.secondarySystemBackground, for: .disabled)
-        button.layer.cornerRadius = 8.0
-
-        button.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
-
-        return button
-    }()
-
-    @objc func didTapDeleteButton() {
-        let alertController = UIAlertController(
-            title: "진짜 삭제하시겠습니까?",
-            message: "해당 가방은 영구 삭제됩니다.",
-            preferredStyle: .alert
-        )
-
-        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-
-            self?.deleteSet.forEach { bag in
-                let index = self?.bags.firstIndex(of: bag) ?? 0
-                self?.bags.remove(at: index)
-            }
-            UserDefaults.standard.bags = self?.bags ?? []
-
-            self?.isEditMode = false
-            self?.confirmButton.isHidden = false
-            self?.deleteButton.isHidden = true
-
-            self?.collectionView.reloadData()
-        }
-
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-
-        alertController.addAction(confirm)
-        alertController.addAction(cancel)
-
-        present(alertController, animated: true)
-    }
 
     private lazy var editButton: UIButton = {
         let button = UIButton()
@@ -118,15 +67,6 @@ final class SelectBagsViewController: UIViewController {
 
         return button
     }()
-
-    @objc func didTapEditButton() {
-        isEditMode = !isEditMode
-        confirmButton.isHidden = isEditMode
-        deleteButton.isHidden = !isEditMode
-        addButton.isHidden = isEditMode
-
-        collectionView.reloadData()
-    }
 
     private lazy var addButton: UIButton = {
         let button = UIButton()
@@ -138,55 +78,24 @@ final class SelectBagsViewController: UIViewController {
         return button
     }()
 
-    @objc func didTapAddButton() {
-        let alertController = UIAlertController(
-            title: "가방 추가하기",
-            message: "어떤 가방을 추가하시나요?",
-            preferredStyle: .alert
-        )
-        alertController.addTextField()
+    private lazy var separator: UIView = {
+        let view = UIView()
+        view.backgroundColor = .secondarySystemBackground
 
-        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            guard let text = alertController.textFields?[0].text?
-                .trimmingCharacters(in: .whitespaces)
-            else { return }
+        return view
+    }()
 
-            let bags = self?.bags ?? []
-            if bags.contains(text) {
-                let cautionAlert = UIAlertController(
-                    title: "같은 이름의 가방이 있습니다. 다른 이름으로 다시 시도해주세요.",
-                    message: "",
-                    preferredStyle: .alert
-                )
-                cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                self?.present(cautionAlert, animated: true)
-                return
-            }
-
-            if text != "" {
-                self?.bags.append(text)
-                UserDefaults.standard.bags = self?.bags ?? []
-                self?.collectionView
-                    .insertItems(at: [IndexPath(row: (self?.bags.count ?? 0) - 1, section: 0)])
-            }
-        }
-
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-
-        alertController.addAction(confirm)
-        alertController.addAction(cancel)
-
-        present(alertController, animated: true)
-    }
-
-    init(delegate: SelectBagsViewControllerDelegate?, checklist: Checklist) {
-        super.init(nibName: nil, bundle: nil)
-
+    init(
+        delegate: SelectBagsViewControllerDelegate?,
+        checklist: Checklist,
+        realm: Realm
+    ) {
         self.delegate = delegate
         self.checklist = checklist
-        self.bags = UserDefaults.standard.bags
+        self.realm = realm
+        self.bags = realm.objects(Bag.self)
 
-        view.backgroundColor = .systemBackground
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -196,28 +105,37 @@ final class SelectBagsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        confirmButton.isEnabled = false
-        deleteButton.isEnabled = false
-        deleteButton.isHidden = true
-
         setLayout()
+
+        view.backgroundColor = .systemBackground
     }
 }
 
 extension SelectBagsViewController: SelectBagsViewCellDelegate {
-    func tappedCheckButton(cell: SelectBagsViewCell, index: Int) {
-        cell.checkBox.isSelected.toggle()
-        if cell.checkBox.isSelected == true {
-            deleteSet.insert(bags[index])
-        } else {
-            deleteSet.remove(bags[index])
+    func tappedDeleteButton(cell: SelectBagsViewCell, index: Int) {
+        let alertController = UIAlertController(
+            title: "진짜 삭제하시겠습니까?",
+            message: "해당 가방은 영구 삭제됩니다.",
+            preferredStyle: .alert
+        )
+
+        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            let bag = self?.bags[index]
+            try? self?.realm.write {
+                self?.realm.delete(bag!)
+            }
+            self?.isEditMode = false
+            self?.confirmButton.isHidden = false
+
+            self?.collectionView.reloadData()
         }
 
-        if deleteSet.isEmpty {
-            deleteButton.isEnabled = false
-        } else {
-            deleteButton.isEnabled = true
-        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alertController.addAction(confirm)
+        alertController.addAction(cancel)
+
+        present(alertController, animated: true)
     }
 
     func tappedBagButton(cell: SelectBagsViewCell) {
@@ -253,19 +171,19 @@ extension SelectBagsViewController: UICollectionViewDataSource {
             confirmButton.isEnabled = true
         }
 
-        cell.checkBox.isHidden = !isEditMode
+        cell.deleteButton.isHidden = !isEditMode
         cell.bagButton.isEnabled = !isEditMode
 
         if deleteSet.contains(bag) {
-            cell.checkBox.isSelected = true
+            cell.deleteButton.isSelected = true
         } else {
-            cell.checkBox.isSelected = false
+            cell.deleteButton.isSelected = false
         }
 
         cell.bagButton.tag = indexPath.item
-        cell.checkBox.tag = indexPath.item
+        cell.deleteButton.tag = indexPath.item
 
-        cell.setup(bag: bag, delegate: self, checklist: checklist)
+        cell.setup(bag: bag, delegate: self)
 
         return cell
     }
@@ -291,7 +209,7 @@ private extension SelectBagsViewController {
             confirmButton,
             editButton,
             addButton,
-            deleteButton
+            separator
         ]
             .forEach { view.addSubview($0) }
 
@@ -318,10 +236,74 @@ private extension SelectBagsViewController {
             $0.width.height.equalTo(80.0)
         }
 
-        deleteButton.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(24.0)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24.0)
-            $0.height.equalTo(50.0)
+        separator.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(1.0)
         }
+    }
+
+    @objc func didTapEditButton() {
+        isEditMode = !isEditMode
+        confirmButton.isHidden = isEditMode
+        addButton.isHidden = isEditMode
+
+        collectionView.reloadData()
+    }
+
+    @objc func didTapAddButton() {
+        let alertController = UIAlertController(
+            title: "가방 추가하기",
+            message: "어떤 가방을 추가하시나요?",
+            preferredStyle: .alert
+        )
+        alertController.addTextField()
+
+        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let text = alertController.textFields?[0].text?
+                .trimmingCharacters(in: .whitespaces)
+            else { return }
+
+            if !(self?.bags.filter({ $0.name == text }).isEmpty ?? false) {
+                let cautionAlert = UIAlertController(
+                    title: "같은 이름의 가방이 있습니다. 다른 이름으로 다시 시도해주세요.",
+                    message: "",
+                    preferredStyle: .alert
+                )
+                cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self?.present(cautionAlert, animated: true)
+                return
+            }
+
+            if text != "" {
+                let bag = Bag(value: ["name": text])
+                try? self?.realm.write({
+                    self?.realm.add(bag)
+                })
+
+                self?.collectionView
+                    .insertItems(at: [IndexPath(row: (self?.bags.count ?? 0) - 1, section: 0)])
+            }
+        }
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alertController.addAction(confirm)
+        alertController.addAction(cancel)
+
+        present(alertController, animated: true)
+    }
+
+    @objc func didTapConfirmButton() {
+        guard let selectIndex = beforeSelect?.bagButton.tag else { return }
+        let bag = bags[selectIndex]
+
+        try? realm.write {
+            checklist.bag = bag
+            checklist.state = .ready
+        }
+
+        delegate?.selectBag(modifiedChecklist: checklist)
+        navigationController?.popViewController(animated: true)
     }
 }

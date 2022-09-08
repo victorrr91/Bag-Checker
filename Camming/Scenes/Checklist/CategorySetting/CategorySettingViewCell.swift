@@ -20,9 +20,9 @@ final class CategorySettingViewCell: UITableViewCell {
         return label
     }()
 
-    func setup(category: String) {
+    func setup(category: Category) {
         selectionStyle = .none
-        label.text = category
+        label.text = category.name
 
         addSubview(label)
         label.snp.makeConstraints {

@@ -8,17 +8,20 @@
 import Foundation
 import UIKit
 import SnapKit
+import RealmSwift
 
 protocol CategorySettingViewControllerDelegate: AnyObject {
-    func tappedConfirmButton(categories: [String])
+    func tappedConfirmButton()
 }
 
 final class CategorySettingViewController: UIViewController {
-    private var categories: [String]
+    var realm: Realm!
+
+    private var categories = List<Category>()
 
     private weak var delegate: CategorySettingViewControllerDelegate?
 
-    private var deleteCategories: [String] = []
+    private var deleteCategories: [Category] = []
 
     private lazy var tabelView: UITableView = {
         let tableView = UITableView()
@@ -51,42 +54,6 @@ final class CategorySettingViewController: UIViewController {
         return button
     }()
 
-    @objc func didTapAddCatogoryButton() {
-        let alertController = UIAlertController(title: "카테고리 추가하기", message: nil, preferredStyle: .alert)
-        alertController.addTextField()
-
-        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-            guard let newCategory = alertController.textFields?[0].text?
-                .trimmingCharacters(in: .whitespaces)
-            else { return }
-
-            let categories = self?.categories ?? []
-            if categories.contains(newCategory) {
-                let cautionAlert = UIAlertController(
-                    title: "같은 이름의 카테고리가 있습니다. 다른 이름으로 다시 시도해주세요.",
-                    message: "",
-                    preferredStyle: .alert
-                )
-                cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                self?.present(cautionAlert, animated: true)
-                return
-            }
-
-            if newCategory != "" {
-                self?.categories.append(newCategory)
-                self?.tabelView.reloadData()
-                self?.scrollToBottom()
-            }
-        }
-
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-
-        alertController.addAction(confirm)
-        alertController.addAction(cancel)
-
-        present(alertController, animated: true)
-    }
-
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
 
@@ -101,19 +68,18 @@ final class CategorySettingViewController: UIViewController {
         return button
     }()
 
-    @objc func didTapConfirmButton() {
-        if !deleteCategories.isEmpty {
-            deleteCategories.forEach {
-                UserDefaults.standard.deleteCategory(name: $0)
-            }
-        }
-        delegate?.tappedConfirmButton(categories: categories)
-        navigationController?.popViewController(animated: true)
-    }
+    private lazy var separator: UIView = {
+        let view = UIView()
+        view.backgroundColor = .secondarySystemBackground
 
-    init(categories: [String], delegate: CategorySettingViewControllerDelegate?) {
-        self.categories = categories
+        return view
+    }()
+
+    init(delegate: CategorySettingViewControllerDelegate?, realm: Realm) {
         self.delegate = delegate
+        self.realm = realm
+
+        categories = realm.objects(Categories.self).first!.categories
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -125,36 +91,9 @@ final class CategorySettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        [tabelView, addButton, confirmButton]
-            .forEach { view.addSubview($0) }
+        setupLayout()
 
-        tabelView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(80.0)
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(60.0)
-            $0.height.equalTo(440.0)
-        }
-
-        addButton.snp.makeConstraints {
-            $0.leading.trailing.equalTo(tabelView)
-            $0.top.equalTo(tabelView.snp.bottom)
-            $0.height.equalTo(50.0)
-        }
-
-        confirmButton.snp.makeConstraints {
-            $0.leading.trailing.equalTo(addButton)
-            $0.top.equalTo(addButton.snp.bottom).offset(8.0)
-            $0.height.equalTo(50.0)
-        }
-
-        view.backgroundColor = .tertiarySystemBackground
-    }
-
-    func scrollToBottom() {
-        let lastRowOfIndexPath = self.tabelView.numberOfRows(inSection: 0) - 1
-        DispatchQueue.main.async {
-            let indexPath = IndexPath(row: lastRowOfIndexPath, section: 0)
-            self.tabelView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-        }
+        view.backgroundColor = .systemBackground
     }
 }
 
@@ -191,9 +130,11 @@ extension CategorySettingViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let category: String = self.categories[sourceIndexPath.row]
-        self.categories.remove(at: sourceIndexPath.row)
-        self.categories.insert(category, at: destinationIndexPath.row)
+        let category = categories[sourceIndexPath.row]
+        try? realm.write({
+            categories.remove(at: sourceIndexPath.row)
+            categories.insert(category, at: destinationIndexPath.row)
+        })
     }
 
     func tableView(
@@ -201,9 +142,111 @@ extension CategorySettingViewController: UITableViewDelegate {
         commit editingStyle: UITableViewCell.EditingStyle,
         forRowAt indexPath: IndexPath
     ) {
-        self.deleteCategories.append(categories[indexPath.row
-                                               ])
-        self.categories.remove(at: indexPath.row)
+        self.deleteCategories.append(categories[indexPath.row])
+        try? realm.write({
+            self.categories.remove(at: indexPath.row)
+        })
         tableView.deleteRows(at: [indexPath], with: .automatic)
+    }
+}
+
+private extension CategorySettingViewController {
+    func setupLayout() {
+        [tabelView, addButton, confirmButton, separator]
+            .forEach { view.addSubview($0) }
+
+        tabelView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(80.0)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(60.0)
+            $0.height.equalTo(440.0)
+        }
+
+        addButton.snp.makeConstraints {
+            $0.leading.trailing.equalTo(tabelView)
+            $0.top.equalTo(tabelView.snp.bottom)
+            $0.height.equalTo(50.0)
+        }
+
+        confirmButton.snp.makeConstraints {
+            $0.leading.trailing.equalTo(addButton)
+            $0.top.equalTo(addButton.snp.bottom).offset(8.0)
+            $0.height.equalTo(50.0)
+        }
+
+        separator.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(1.0)
+        }
+    }
+
+    func scrollToBottom() {
+        let lastRowOfIndexPath = self.tabelView.numberOfRows(inSection: 0) - 1
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(row: lastRowOfIndexPath, section: 0)
+            self.tabelView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+    }
+
+    @objc func didTapAddCatogoryButton() {
+        let alertController = UIAlertController(title: "카테고리 추가하기", message: nil, preferredStyle: .alert)
+        alertController.addTextField()
+
+        let confirm = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let newCategory = alertController.textFields?[0].text?
+                .trimmingCharacters(in: .whitespaces)
+            else { return }
+
+            if !(self?.categories.filter({ $0.name == newCategory }).isEmpty ?? false) {
+                let cautionAlert = UIAlertController(
+                    title: "같은 이름의 카테고리가 있습니다. 다른 이름으로 다시 시도해주세요.",
+                    message: "",
+                    preferredStyle: .alert
+                )
+                cautionAlert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                self?.present(cautionAlert, animated: true)
+                return
+            }
+
+            if newCategory != "" {
+                let category = Category(value: ["name": newCategory])
+
+                try? self?.realm.write({
+                    self?.categories.append(category)
+                })
+
+                self?.tabelView.reloadData()
+                self?.scrollToBottom()
+            }
+        }
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+
+        alertController.addAction(confirm)
+        alertController.addAction(cancel)
+
+        present(alertController, animated: true)
+    }
+
+    @objc func didTapConfirmButton() {
+        if !deleteCategories.isEmpty {
+            deleteCategories.forEach { category in
+                category.checklists.forEach { checklist in
+                    try? realm.write {
+                        realm.delete(checklist)
+                    }
+                }
+
+                try? realm.write {
+                    realm.delete(category)
+                }
+            }
+        }
+        try? realm.write({
+            realm.objects(Categories.self).first?.categories = categories
+        })
+
+        delegate?.tappedConfirmButton()
+        navigationController?.popViewController(animated: true)
     }
 }

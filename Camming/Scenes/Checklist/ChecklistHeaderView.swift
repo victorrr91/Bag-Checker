@@ -7,14 +7,15 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 final class ChecklistHeaderView: UICollectionReusableView {
     static let identifier = "ChecklistHeaderView"
 
-    private var categories: [String] = []
+    private var categories = List<Category>()
     private weak var delegate: ChecklistHeaderViewCellDelegate?
 
-    private var selectCategory: String?
+    private var selectCategory: Category?
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -42,9 +43,9 @@ final class ChecklistHeaderView: UICollectionReusableView {
     }()
 
     func setup(
-        categories: [String],
+        categories: List<Category>,
         delegate: ChecklistHeaderViewCellDelegate?,
-        currentCategory: String
+        currentCategory: Category
     ) {
         self.categories = categories
         self.delegate = delegate
@@ -63,7 +64,8 @@ extension ChecklistHeaderView: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
+        guard let selectedCategory = selectCategory,
+              let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: ChecklistHeaderViewCell.identifier,
             for: indexPath
         ) as? ChecklistHeaderViewCell
@@ -72,13 +74,13 @@ extension ChecklistHeaderView: UICollectionViewDataSource {
         cell.categoryButton.tag = indexPath.item
         let category = categories[indexPath.item]
 
-        if selectCategory == category {
+        if selectedCategory.name == category.name {
             cell.categoryButton.isSelected = true
         } else {
             cell.categoryButton.isSelected = false
         }
 
-        cell.setup(category, delegate: delegate, categoryButtonDelegate: self)
+        cell.setup(category: category, delegate: delegate, categoryButtonDelegate: self)
 
         return cell
     }
@@ -88,6 +90,7 @@ extension ChecklistHeaderView: CategoryButtonDelegate {
     func didtapCategory(_ sender: UIButton) {
         let category = categories[sender.tag]
         selectCategory = category
+
         self.collectionView.reloadData()
     }
 }
@@ -106,7 +109,6 @@ private extension ChecklistHeaderView {
 
         settingButton.snp.makeConstraints {
             $0.trailing.equalToSuperview()
-//            $0.width.height.equalTo(40.0)
             $0.centerY.equalToSuperview()
         }
 
